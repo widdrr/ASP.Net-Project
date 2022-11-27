@@ -7,7 +7,7 @@ namespace ASP.Net_Backend.Models
     {
         [Key]
         [Required]
-        public Guid Id { get; set; };
+        public Guid Id { get; set; }
 
     }
 }
