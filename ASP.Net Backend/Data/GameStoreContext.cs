@@ -43,20 +43,37 @@ namespace ASP.Net_Backend.Data
                 .WithOne(gl => gl.Library)
                 .HasForeignKey(gl => gl.LibraryId);
 
-            //Many to Many between Game<->Transaction
+            //Many to Many between Game<->Purchase
             //Done through the GameTransaction associative entity
-            modelBuilder.Entity<GameTransaction>()
+            modelBuilder.Entity<GamePurchase>()
                 .HasKey(gt => new { gt.TransactionId, gt.GameId });
 
-            modelBuilder.Entity<Game>()
-                .HasMany(g => g.GameTransactions)
-                .WithOne(gt => gt.Game)
-                .HasForeignKey(gt => gt.GameId);
+            //Purchase and Deposit are subentities in 1 to 1 with Transaction
+            modelBuilder.Entity<Purchase>()
+                .HasKey(p => p.TransactionId);
+            modelBuilder.Entity<Deposit>()
+                .HasKey(d => d.TransactionId);
 
             modelBuilder.Entity<Transaction>()
-                .HasMany(t => t.GameTransactions)
-                .WithOne(gt => gt.Transaction)
-                .HasForeignKey(gt => gt.TransactionId);
+                .HasOne(t => t.Purchase)
+                .WithOne(p => p.Transaction)
+                .HasForeignKey<Purchase>(p => p.TransactionId);
+
+            modelBuilder.Entity<Transaction>()
+                .HasOne(t => t.Deposit)
+                .WithOne(d => d.Transaction)
+                .HasForeignKey<Deposit>(d => d.TransactionId);
+
+
+            modelBuilder.Entity<Game>()
+                .HasMany(g => g.GamePurchases)
+                .WithOne(gp => gp.Game)
+                .HasForeignKey(gt => gt.GameId);
+
+            modelBuilder.Entity<Purchase>()
+                .HasMany(p => p.GamePurchases)
+                .WithOne(gp => gp.Purchase)
+                .HasForeignKey(gp => gp.TransactionId);
 
 
             base.OnModelCreating(modelBuilder);

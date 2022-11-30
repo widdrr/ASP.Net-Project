@@ -1,15 +1,19 @@
 ﻿using ASP.Net_Backend.Models.Associations;
 using ASP.Net_Backend.Models.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace ASP.Net_Backend.Models
 {
     public class Game : BaseEntity
     {
-        public string? Name { get; set; }
-        public string? Developer { get; set; }
-        public int? Price { get; set; }
+        [StringLength(64)]
+        public string Name { get; set; } = null!;
+        [StringLength(64)]
+        public string Developer { get; set; } = null!;
+        [Range(0,999)]
+        public int Price { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public ICollection<GameLibrary> GameLibraries { get; set; } = null!;
-        public ICollection<GameTransaction> GameTransactions { get; set; } = null!;
+        public ICollection<GameLibrary>? GameLibraries { get; set; }
+        public ICollection<GamePurchase>? GamePurchases { get; set; }
     }
 }

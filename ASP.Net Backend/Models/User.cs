@@ -6,13 +6,15 @@ namespace ASP.Net_Backend.Models
 {
     public class User : BaseEntity
     {
-        public string? Username { get; set; }
-        public string? Email { get; set; }
+        [StringLength(64)]
+        public string Username { get; set; } = null!;
+        [StringLength(64)]
+        public string Email { get; set; } = null!;
         [JsonIgnore]
-        public string? PasswordHash { get; set; }
+        public string PasswordHash { get; set; } = null!;
         public DateTime JoinDate { get; set; }
         public Library? Library { get; set; }
-        public ICollection<Transaction> Transactions { get; set; } = null!;
+        public ICollection<Transaction>? Transactions { get; set; }
 
     }
 }

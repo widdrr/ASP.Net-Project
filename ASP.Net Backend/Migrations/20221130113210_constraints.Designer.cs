@@ -4,6 +4,7 @@ using ASP.Net_Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASP.NetBackend.Migrations
 {
     [DbContext(typeof(GameStoreContext))]
-    partial class GameStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20221130113210_constraints")]
+    partial class constraints
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,35 +43,22 @@ namespace ASP.NetBackend.Migrations
                     b.ToTable("GameLibrary");
                 });
 
-            modelBuilder.Entity("ASP.Net_Backend.Models.Associations.GamePurchase", b =>
+            modelBuilder.Entity("ASP.Net_Backend.Models.Associations.GameTransaction", b =>
                 {
                     b.Property<Guid>("TransactionId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("GameId")
+                    b.Property<Guid?>("GameId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Price")
+                    b.Property<int>("Sum")
                         .HasColumnType("int");
 
                     b.HasKey("TransactionId", "GameId");
 
                     b.HasIndex("GameId");
 
-                    b.ToTable("GamePurchase");
-                });
-
-            modelBuilder.Entity("ASP.Net_Backend.Models.Deposit", b =>
-                {
-                    b.Property<Guid>("TransactionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Sum")
-                        .HasColumnType("int");
-
-                    b.HasKey("TransactionId");
-
-                    b.ToTable("Deposit");
+                    b.ToTable("GameTransaction");
                 });
 
             modelBuilder.Entity("ASP.Net_Backend.Models.Game", b =>
@@ -113,16 +103,6 @@ namespace ASP.NetBackend.Migrations
                         .IsUnique();
 
                     b.ToTable("Libraries");
-                });
-
-            modelBuilder.Entity("ASP.Net_Backend.Models.Purchase", b =>
-                {
-                    b.Property<Guid>("TransactionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("TransactionId");
-
-                    b.ToTable("Purchase");
                 });
 
             modelBuilder.Entity("ASP.Net_Backend.Models.Transaction", b =>
@@ -191,32 +171,21 @@ namespace ASP.NetBackend.Migrations
                     b.Navigation("Library");
                 });
 
-            modelBuilder.Entity("ASP.Net_Backend.Models.Associations.GamePurchase", b =>
+            modelBuilder.Entity("ASP.Net_Backend.Models.Associations.GameTransaction", b =>
                 {
                     b.HasOne("ASP.Net_Backend.Models.Game", "Game")
-                        .WithMany("GamePurchases")
+                        .WithMany("GameTransactions")
                         .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ASP.Net_Backend.Models.Purchase", "Purchase")
-                        .WithMany("GamePurchases")
+                    b.HasOne("ASP.Net_Backend.Models.Transaction", "Transaction")
+                        .WithMany("GameTransactions")
                         .HasForeignKey("TransactionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Game");
-
-                    b.Navigation("Purchase");
-                });
-
-            modelBuilder.Entity("ASP.Net_Backend.Models.Deposit", b =>
-                {
-                    b.HasOne("ASP.Net_Backend.Models.Transaction", "Transaction")
-                        .WithOne("Deposit")
-                        .HasForeignKey("ASP.Net_Backend.Models.Deposit", "TransactionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("Transaction");
                 });
@@ -230,17 +199,6 @@ namespace ASP.NetBackend.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ASP.Net_Backend.Models.Purchase", b =>
-                {
-                    b.HasOne("ASP.Net_Backend.Models.Transaction", "Transaction")
-                        .WithOne("Purchase")
-                        .HasForeignKey("ASP.Net_Backend.Models.Purchase", "TransactionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Transaction");
                 });
 
             modelBuilder.Entity("ASP.Net_Backend.Models.Transaction", b =>
@@ -258,7 +216,7 @@ namespace ASP.NetBackend.Migrations
                 {
                     b.Navigation("GameLibraries");
 
-                    b.Navigation("GamePurchases");
+                    b.Navigation("GameTransactions");
                 });
 
             modelBuilder.Entity("ASP.Net_Backend.Models.Library", b =>
@@ -266,16 +224,9 @@ namespace ASP.NetBackend.Migrations
                     b.Navigation("GameLibraries");
                 });
 
-            modelBuilder.Entity("ASP.Net_Backend.Models.Purchase", b =>
-                {
-                    b.Navigation("GamePurchases");
-                });
-
             modelBuilder.Entity("ASP.Net_Backend.Models.Transaction", b =>
                 {
-                    b.Navigation("Deposit");
-
-                    b.Navigation("Purchase");
+                    b.Navigation("GameTransactions");
                 });
 
             modelBuilder.Entity("ASP.Net_Backend.Models.User", b =>

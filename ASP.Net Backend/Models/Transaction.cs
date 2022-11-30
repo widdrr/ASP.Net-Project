@@ -8,6 +8,7 @@ namespace ASP.Net_Backend.Models
         public Guid UserId { get; set; }
         public User User { get; set; } = null!;
         public DateTime Date { get; set; }
-        public ICollection<GameTransaction> GameTransactions { get; set; } = null!;
+        public Purchase? Purchase { get; set; }
+        public Deposit? Deposit { get; set; }
     }
 }
