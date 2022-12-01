@@ -1,6 +1,6 @@
 ﻿namespace ASP.Net_Backend.Models.Associations
 {
-    public class GameLibrary
+    public class Addition
     {
         public Guid GameId { get; set; }
         public Game Game { get; set; } = null!;

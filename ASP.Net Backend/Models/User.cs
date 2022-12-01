@@ -1,4 +1,5 @@
-﻿using ASP.Net_Backend.Models.Base;
+﻿using ASP.Net_Backend.Enums;
+using ASP.Net_Backend.Models.Base;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
@@ -12,6 +13,7 @@ namespace ASP.Net_Backend.Models
         public string Email { get; set; } = null!;
         [JsonIgnore]
         public string PasswordHash { get; set; } = null!;
+        public Role Role { get; set; }
         public DateTime JoinDate { get; set; }
         public Library? Library { get; set; }
         public ICollection<Transaction>? Transactions { get; set; }

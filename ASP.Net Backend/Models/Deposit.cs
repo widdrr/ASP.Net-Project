@@ -7,6 +7,6 @@ namespace ASP.Net_Backend.Models
         public Guid TransactionId { get; set; }
         public Transaction Transaction { get; set; } = null!;
         [Range(0, 999)]
-        public int Sum { get; set; }
+        public double Sum { get; set; }
     }
 }

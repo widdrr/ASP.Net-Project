@@ -4,6 +4,7 @@ using ASP.Net_Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASP.NetBackend.Migrations
 {
     [DbContext(typeof(GameStoreContext))]
-    partial class GameStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20221201112522_ForgotRole")]
+    partial class ForgotRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace ASP.NetBackend.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ASP.Net_Backend.Models.Associations.Addition", b =>
+            modelBuilder.Entity("ASP.Net_Backend.Models.Associations.GameLibrary", b =>
                 {
                     b.Property<Guid>("LibraryId")
                         .HasColumnType("uniqueidentifier");
@@ -37,7 +40,7 @@ namespace ASP.NetBackend.Migrations
 
                     b.HasIndex("GameId");
 
-                    b.ToTable("Addition");
+                    b.ToTable("GameLibrary");
                 });
 
             modelBuilder.Entity("ASP.Net_Backend.Models.Associations.GamePurchase", b =>
@@ -175,7 +178,7 @@ namespace ASP.NetBackend.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ASP.Net_Backend.Models.Associations.Addition", b =>
+            modelBuilder.Entity("ASP.Net_Backend.Models.Associations.GameLibrary", b =>
                 {
                     b.HasOne("ASP.Net_Backend.Models.Game", "Game")
                         .WithMany("GameLibraries")

@@ -7,6 +7,6 @@ namespace ASP.Net_Backend.Models
     {
         public Guid UserId { get; set; }
         public User User { get; set; } = null!;
-        public ICollection<GameLibrary>? GameLibraries { get; set; }
+        public ICollection<Addition> GameLibraries { get; set; } = null!;
     }
 }

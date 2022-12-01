@@ -30,7 +30,7 @@ namespace ASP.Net_Backend.Data
             
             //Many to Many between Game<->Library
             //Done through the GameLibrary associative entity
-            modelBuilder.Entity<GameLibrary>()
+            modelBuilder.Entity<Addition>()
                 .HasKey(gl => new { gl.LibraryId, gl.GameId });
 
             modelBuilder.Entity<Game>()

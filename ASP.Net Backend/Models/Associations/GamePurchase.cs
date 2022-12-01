@@ -7,7 +7,7 @@ namespace ASP.Net_Backend.Models.Associations
         public Guid GameId { get; set; }
         public Game Game { get; set; } = null!;
         [Range(0,999)]
-        public int Price { get; set; }
+        public double Price { get; set; }
         public Guid TransactionId { get; set; }
         public Purchase Purchase { get; set; } = null!;
     }
