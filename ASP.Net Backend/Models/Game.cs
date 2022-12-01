@@ -11,9 +11,9 @@ namespace ASP.Net_Backend.Models
         [StringLength(64)]
         public string Developer { get; set; } = null!;
         [Range(0,999)]
-        public int Price { get; set; }
+        public double Price { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public ICollection<GameLibrary>? GameLibraries { get; set; }
+        public ICollection<Addition>? GameLibraries { get; set; }
         public ICollection<GamePurchase>? GamePurchases { get; set; }
     }
 }
