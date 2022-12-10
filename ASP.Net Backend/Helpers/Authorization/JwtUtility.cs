@@ -35,5 +35,38 @@ namespace ASP.Net_Backend.Helpers.Authorization
 
             return tokenHandler.WriteToken(token);
         }
+        public Guid ValidateToken(string token)
+        {
+            if (token == null)
+            {
+                return Guid.Empty;
+            }
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var appPrivateKey = Encoding.ASCII.GetBytes(_jwtConfig.JwtSecret!);
+
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(appPrivateKey),
+                ValidateIssuer = true,
+                ValidateAudience = false,
+                ClockSkew = TimeSpan.Zero,
+            };
+
+            try
+            {
+                tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken validatedToken);
+
+                var jwtToken = (JwtSecurityToken)validatedToken;
+                var userId = new Guid(jwtToken.Claims.FirstOrDefault(x => x.Type == "id").Value);
+
+                return userId;
+            }
+            catch
+            {
+                return Guid.Empty;
+            }
+        }
     }
 }
