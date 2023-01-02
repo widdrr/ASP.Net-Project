@@ -9,6 +9,6 @@ namespace ASP.Net_Backend.Repositories.BaseRepository
         Task CreateAsync(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
-        Task<bool> SaveAsync();
+        void DeleteRange(IEnumerable<TEntity> entities);
     }
 }

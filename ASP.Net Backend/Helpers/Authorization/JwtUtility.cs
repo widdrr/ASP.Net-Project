@@ -59,7 +59,7 @@ namespace ASP.Net_Backend.Helpers.Authorization
                 tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                var userId = new Guid(jwtToken.Claims.FirstOrDefault(x => x.Type == "id").Value);
+                var userId = new Guid(jwtToken.Claims.FirstOrDefault(x => x.Type == "id")!.Value);
 
                 return userId;
             }

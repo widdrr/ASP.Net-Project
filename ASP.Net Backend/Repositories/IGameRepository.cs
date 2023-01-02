@@ -5,5 +5,6 @@ namespace ASP.Net_Backend.Repositories
 {
     public interface IGameRepository : IBaseRepository<Game>
     {
+        Task<Game?> GetByNameAsync(String name);
     }
 }

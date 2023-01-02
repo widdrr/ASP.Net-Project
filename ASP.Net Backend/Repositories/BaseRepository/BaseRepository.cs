@@ -23,7 +23,7 @@ namespace ASP.Net_Backend.Repositories.BaseRepository
 
         public async Task CreateAsync(TEntity entity)
         {
-            await _table.AddAsync(entity);
+                await _table.AddAsync(entity);
         }
 
         public void Update(TEntity entity)
@@ -34,24 +34,13 @@ namespace ASP.Net_Backend.Repositories.BaseRepository
         {
             _table.Remove(entity);
         }
-
+        public void DeleteRange(IEnumerable<TEntity> entities)
+        {
+            _table.RemoveRange(entities);
+        }
         public async Task<TEntity?> GetByIdAsync(Guid id)
         {
             return await _table.FirstOrDefaultAsync(e => e.Id == id);
-        }
-
-        public async Task<bool> SaveAsync()
-        {
-            try
-            {
-                return await _context.SaveChangesAsync() > 0;
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex);
-            }
-
-            return false;
         }
     }
 }
