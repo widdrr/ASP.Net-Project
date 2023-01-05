@@ -1,6 +1,9 @@
-﻿namespace ASP.Net_Backend.Services.GameService
+﻿using ASP.Net_Backend.Models;
+using ASP.Net_Backend.Models.DTOs.Games;
+
+namespace ASP.Net_Backend.Services
 {
-    public class UserService
+    public interface IGameService
     {
         Task<GameResponseDto?> GetByIdAsync(Guid id);
         Task<IEnumerable<GameResponseDto>> GetAllAsync();

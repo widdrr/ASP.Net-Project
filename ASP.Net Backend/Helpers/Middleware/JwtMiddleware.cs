@@ -1,4 +1,5 @@
 ﻿using ASP.Net_Backend.Helpers.Authorization;
+using ASP.Net_Backend.Services;
 
 namespace ASP.Net_Backend.Helpers.Middleware
 {
@@ -12,7 +13,7 @@ namespace ASP.Net_Backend.Helpers.Middleware
             _nextRequestDelegate = requestDelegate;
         }
 
-        public async Task Invoke(HttpContext httpContext, IUsersService usersService, IJwtUtility jwtUtility)
+        public async Task Invoke(HttpContext httpContext, IUserService userService, IJwtUtility jwtUtility)
         {
             var token = httpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split("").Last();
 
@@ -20,12 +21,11 @@ namespace ASP.Net_Backend.Helpers.Middleware
 
             if (userId != Guid.Empty)
             {
-                httpContext.Items["User"] = usersService.GetById(userId);
+                httpContext.Items["User"] = await userService.GetByIdAsync(userId);
             }
 
             await _nextRequestDelegate(httpContext);
         }
 
     }
-}
 }

@@ -3,8 +3,8 @@ using ASP.Net_Backend.Helpers.Authorization;
 using ASP.Net_Backend.Helpers.Seeders;
 using ASP.Net_Backend.Helpers.Extensions;
 using Microsoft.EntityFrameworkCore;
-using ASP.Net_Backend.Services.GameService;
 using ASP.Net_Backend.Repositories;
+using ASP.Net_Backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

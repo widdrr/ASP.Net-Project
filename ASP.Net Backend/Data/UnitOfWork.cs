@@ -18,6 +18,7 @@ namespace ASP.Net_Backend.Data
          * approach is more complicated
          */
         private IGameRepository? _gameRepository;
+        private IUserRepository? _userRepository;
 
         public UnitOfWork(GameStoreContext context)
         {
@@ -37,6 +38,17 @@ namespace ASP.Net_Backend.Data
                     _gameRepository = new GameRepository(_context);
                 }
                 return _gameRepository;
+            }
+        }
+        public IUserRepository UserRepository
+        {
+            get
+            {
+                if (_userRepository is null)
+                {
+                    _userRepository = new UserRepository(_context);
+                }
+                return _userRepository;
             }
         }
         public async Task CreateTransactionAsync()

@@ -4,14 +4,14 @@ using ASP.Net_Backend.Models.DTOs.Games;
 using ASP.Net_Backend.Repositories;
 using AutoMapper;
 
-namespace ASP.Net_Backend.Services.GameService
+namespace ASP.Net_Backend.Services
 {
     public class GameService : IGameService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IGameRepository _gameRepository;
         private readonly IMapper _mapper;
-        
+
         public GameService(IUnitOfWork unitOfWOrk, IMapper mapper)
         {
             _unitOfWork = unitOfWOrk;
@@ -55,6 +55,6 @@ namespace ASP.Net_Backend.Services.GameService
             _gameRepository.DeleteRange(await allGames);
             await _unitOfWork.SaveAsync();
         }
-        
+
     }
 }
