@@ -3,6 +3,7 @@ using ASP.Net_Backend.Enums;
 using ASP.Net_Backend.Helpers.Authorization;
 using ASP.Net_Backend.Models;
 using ASP.Net_Backend.Models.DTOs.Users;
+using ASP.Net_Backend.Repositories.TransactionRepository;
 using ASP.Net_Backend.Repositories.UserRepository;
 using AutoMapper;
 using BCryptNet = BCrypt.Net.BCrypt;
@@ -13,12 +14,14 @@ namespace ASP.Net_Backend.Services.UserService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
+        private readonly ITransactionRepository _transactionRepository;
         private readonly IJwtUtility _jwtUtility;
 
         public UserService(IUnitOfWork unitOfWOrk, IJwtUtility jwtUtility)
         {
             _unitOfWork = unitOfWOrk;
             _userRepository = _unitOfWork.UserRepository;
+            _transactionRepository = _unitOfWork.TransactionRepository;
             _jwtUtility = jwtUtility;
         }
         public async Task<User?> GetByIdAsync(Guid id)
@@ -85,6 +88,9 @@ namespace ASP.Net_Backend.Services.UserService
             var jwtToken = _jwtUtility.GenerateToken(existingUser);
             return jwtToken;
         }
-
+        public Task<int> GetAccountBalance(Guid userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

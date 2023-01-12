@@ -13,5 +13,6 @@ namespace ASP.Net_Backend.Services.UserService
         Task DeleteByIdAsync(Guid id);
         Task DeleteAllAsync();
         Task<string?> AuthenticateAsync(UserAuthRequestDto userReq);
+        Task<int> GetAccountBalance(Guid userId);
     }
 }

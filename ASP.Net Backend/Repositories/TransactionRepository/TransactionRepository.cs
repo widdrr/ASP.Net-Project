@@ -12,12 +12,20 @@ namespace ASP.Net_Backend.Repositories.TransactionRepository
 
         public async Task<IEnumerable<Transaction>> getDepositsForUser(Guid userId)
         {
-            return await _table.Where(t => t.UserId == userId).Include(t => t.Deposit).ToListAsync();
+            return await _table
+                .Where(t => t.UserId == userId)
+                .Include(t => t.Deposit)
+                .Where(t => t.Deposit != null)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<Transaction>> getPurchasesForUser(Guid userId)
         {
-            throw new NotImplementedException();
+            return await _table
+                .Where(t => t.UserId == userId)
+                .Include(t => t.Purchase)
+                .ThenInclude(p => p.GamePurchases)
+                .ToListAsync();
         }
     }
 }
