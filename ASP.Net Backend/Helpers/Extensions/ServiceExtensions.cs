@@ -1,8 +1,10 @@
 ﻿using ASP.Net_Backend.Data;
 using ASP.Net_Backend.Helpers.Authorization;
 using ASP.Net_Backend.Helpers.Seeders;
-using ASP.Net_Backend.Repositories;
-using ASP.Net_Backend.Services;
+using ASP.Net_Backend.Repositories.GameRepository;
+using ASP.Net_Backend.Repositories.UserRepository;
+using ASP.Net_Backend.Services.GameService;
+using ASP.Net_Backend.Services.UserService;
 
 namespace ASP.Net_Backend.Helpers.Extensions
 {

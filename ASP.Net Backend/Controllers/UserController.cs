@@ -1,6 +1,6 @@
 ﻿using ASP.Net_Backend.Enums;
 using ASP.Net_Backend.Models.DTOs.Users;
-using ASP.Net_Backend.Services;
+using ASP.Net_Backend.Services.UserService;
 using AutoMapper;
 using Lab4_13.Helpers.Attributes;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +31,21 @@ namespace ASP.Net_Backend.Controllers
             return Ok(userDtos);
 
         }
+
+        [HttpGet("admin")]
+        [RoleAuthorization(Role.Admin)]
+        public async Task<IActionResult> GetAllAdmin()
+        {
+            var users = await _userService.GetAllAdminAsync();
+
+            if (!users.Any())
+                return NotFound();
+
+
+            var userDtos = users.Select(user => new UserResponseDto(user)).ToList();
+            return Ok(userDtos);
+
+        }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
@@ -49,7 +64,14 @@ namespace ASP.Net_Backend.Controllers
         {
             return Ok(await _userService.CreateAsync(user));
         }
-        
+
+        [HttpPost("admin/add")]
+        [RoleAuthorization(Role.Admin)]
+        public async Task<IActionResult> AddAdmin(UserRequestDto user)
+        {
+            return Ok(await _userService.CreateAdminAsync(user));
+        }
+
         [HttpDelete("")]
         [RoleAuthorization(Role.Admin)]
         public async Task<IActionResult> RemoveAll()
@@ -67,7 +89,7 @@ namespace ASP.Net_Backend.Controllers
         }
         
         [HttpPost("authenticate")]
-        public async Task<IActionResult> Authenticate(UserRequestDto user)
+        public async Task<IActionResult> Authenticate(UserAuthRequestDto user)
         {
             var token = await _userService.AuthenticateAsync(user);
             if (token == null)

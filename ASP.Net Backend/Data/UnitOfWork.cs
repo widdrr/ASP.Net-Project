@@ -1,6 +1,9 @@
 ﻿using ASP.Net_Backend.Models.Base;
 using ASP.Net_Backend.Repositories;
 using ASP.Net_Backend.Repositories.BaseRepository;
+using ASP.Net_Backend.Repositories.GameRepository;
+using ASP.Net_Backend.Repositories.TransactionRepository;
+using ASP.Net_Backend.Repositories.UserRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Data.SqlClient;
@@ -19,6 +22,7 @@ namespace ASP.Net_Backend.Data
          */
         private IGameRepository? _gameRepository;
         private IUserRepository? _userRepository;
+        private ITransactionRepository? _transactionRepository;
 
         public UnitOfWork(GameStoreContext context)
         {
@@ -49,6 +53,17 @@ namespace ASP.Net_Backend.Data
                     _userRepository = new UserRepository(_context);
                 }
                 return _userRepository;
+            }
+        }
+        public ITransactionRepository TransactionRepository
+        {
+            get
+            {
+                if (_transactionRepository is null)
+                {
+                    _transactionRepository = new TransactionRepository(_context);
+                }
+                return _transactionRepository;
             }
         }
         public async Task CreateTransactionAsync()

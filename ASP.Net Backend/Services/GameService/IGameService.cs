@@ -1,7 +1,7 @@
 ﻿using ASP.Net_Backend.Models;
 using ASP.Net_Backend.Models.DTOs.Games;
 
-namespace ASP.Net_Backend.Services
+namespace ASP.Net_Backend.Services.GameService
 {
     public interface IGameService
     {
