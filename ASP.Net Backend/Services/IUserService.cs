@@ -5,11 +5,11 @@ namespace ASP.Net_Backend.Services
 {
     public interface IUserService
     {
-        Task<UserResponseDto?> GetByIdAsync(Guid id);
-        Task<IEnumerable<UserResponseDto>> GetAllAsync();
+        Task<User?> GetByIdAsync(Guid id);
+        Task<IEnumerable<User>> GetAllAsync();
         Task<User?> CreateAsync(UserRequestDto userReq);
         Task DeleteByIdAsync(Guid id);
         Task DeleteAllAsync();
-        Task<string?> Authenticate(UserRequestDto userReq);
+        Task<string?> AuthenticateAsync(UserRequestDto userReq);
     }
 }

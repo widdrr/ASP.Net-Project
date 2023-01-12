@@ -18,25 +18,24 @@ namespace ASP.Net_Backend.Services
             _gameRepository = _unitOfWork.GameRepository;
             _mapper = mapper;
         }
-        public async Task<GameResponseDto?> GetByIdAsync(Guid id)
+        public async Task<Game?> GetByIdAsync(Guid id)
         {
-            var gameDto = _mapper.Map<GameResponseDto>(await _gameRepository.GetByIdAsync(id));
-            return gameDto;
+            return await _gameRepository.GetByIdAsync(id);
         }
-        public async Task<IEnumerable<GameResponseDto>> GetAllAsync()
+        public async Task<IEnumerable<Game>> GetAllAsync()
         {
-            var games = await _gameRepository.GetAllAsync();
-            IEnumerable<GameResponseDto> gameDtos = games.Select(game => _mapper.Map<GameResponseDto>(game));
-            return gameDtos;
+            return await _gameRepository.GetAllAsync();
         }
         public async Task<Game?> CreateAsync(GameRequestDto game)
         {
-            var newGame = _mapper.Map<Game>(game);
-            var existingGame = await _gameRepository.GetByNameAsync(newGame.Name);
+            var existingGame = await _gameRepository.GetByNameAsync(game.Name);
+            
             if (existingGame != null)
             {
                 return null;
             }
+            
+            var newGame = _mapper.Map<Game>(game);
             await _gameRepository.CreateAsync(newGame);
             await _unitOfWork.SaveAsync();
             return newGame;

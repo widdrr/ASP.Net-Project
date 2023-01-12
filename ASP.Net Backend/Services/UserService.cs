@@ -8,7 +8,7 @@ using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace ASP.Net_Backend.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRepository _userRepository;
@@ -22,18 +22,15 @@ namespace ASP.Net_Backend.Services
             _mapper = mapper;
             _jwtUtility = jwtUtility;
         }
-        public async Task<UserResponseDto?> GetByIdAsync(Guid id)
+        public async Task<User?> GetByIdAsync(Guid id)
         {
-            var userDto = _mapper.Map<UserResponseDto>(await _userRepository.GetByIdAsync(id));
-            return userDto;
+            return await _userRepository.GetByIdWithLibraryAsync(id);
         }
-        public async Task<IEnumerable<UserResponseDto>> GetAllAsync()
+        public async Task<IEnumerable<User>> GetAllAsync()
         {
-            var users = await _userRepository.GetAllAsync();
-            IEnumerable<UserResponseDto> usersDtos = users.Select(user => _mapper.Map<UserResponseDto>(user));
-            return usersDtos;
+            return await _userRepository.GetAllWithLibrariesAsync();
         }
-        public async Task<User?> CreateUserAsync(UserRequestDto user)
+        public async Task<User?> CreateAsync(UserRequestDto user)
         {
             var newUser = new User(user);
             var existingUser = await _userRepository.GetByUsernameAsync(newUser.Username);
@@ -59,7 +56,7 @@ namespace ASP.Net_Backend.Services
             _userRepository.DeleteRange(await allusers);
             await _unitOfWork.SaveAsync();
         }
-        public async Task<string?> Authenticate(UserRequestDto user)
+        public async Task<string?> AuthenticateAsync(UserRequestDto user)
         {
             var existingUser = await _userRepository.GetByUsernameAsync(user.Username);
             if (existingUser == null || !BCryptNet.Verify(user.Password, existingUser.PasswordHash))

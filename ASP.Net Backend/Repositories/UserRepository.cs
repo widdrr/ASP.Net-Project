@@ -12,9 +12,16 @@ namespace ASP.Net_Backend.Repositories
 
         public async Task<User?> GetByUsernameAsync(string username)
         {
-            return await _table.FirstOrDefaultAsync(g => g.Username == username);
-
+            return await _table.FirstOrDefaultAsync(u => u.Username == username);
+        }
+        public async Task<User?> GetByIdWithLibraryAsync(Guid id)
+        {
+            return await _table.Include(u => u.Library).FirstOrDefaultAsync(u => u.Id == id);
         }
 
+        public async Task<IEnumerable<User>> GetAllWithLibrariesAsync()
+        {
+            return await _table.Include(u => u.Library).ToListAsync();
+        }
     }
 }

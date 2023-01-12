@@ -5,8 +5,8 @@ namespace ASP.Net_Backend.Services
 {
     public interface IGameService
     {
-        Task<GameResponseDto?> GetByIdAsync(Guid id);
-        Task<IEnumerable<GameResponseDto>> GetAllAsync();
+        Task<Game?> GetByIdAsync(Guid id);
+        Task<IEnumerable<Game>> GetAllAsync();
         Task<Game?> CreateAsync(GameRequestDto game);
         Task DeleteByIdAsync(Guid id);
         Task DeleteAllAsync();
