@@ -1,10 +1,10 @@
 ﻿using ASP.Net_Backend.Data;
 using ASP.Net_Backend.Models;
 using ASP.Net_Backend.Models.DTOs.Games;
-using ASP.Net_Backend.Repositories;
+using ASP.Net_Backend.Repositories.GameRepository;
 using AutoMapper;
 
-namespace ASP.Net_Backend.Services
+namespace ASP.Net_Backend.Services.GameService
 {
     public class GameService : IGameService
     {
@@ -29,12 +29,12 @@ namespace ASP.Net_Backend.Services
         public async Task<Game?> CreateAsync(GameRequestDto game)
         {
             var existingGame = await _gameRepository.GetByNameAsync(game.Name);
-            
+
             if (existingGame != null)
             {
                 return null;
             }
-            
+
             var newGame = _mapper.Map<Game>(game);
             await _gameRepository.CreateAsync(newGame);
             await _unitOfWork.SaveAsync();

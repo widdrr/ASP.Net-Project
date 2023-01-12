@@ -1,9 +1,10 @@
 ﻿using ASP.Net_Backend.Data;
+using ASP.Net_Backend.Enums;
 using ASP.Net_Backend.Models;
 using ASP.Net_Backend.Repositories.BaseRepository;
 using Microsoft.EntityFrameworkCore;
 
-namespace ASP.Net_Backend.Repositories
+namespace ASP.Net_Backend.Repositories.UserRepository
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
@@ -18,10 +19,14 @@ namespace ASP.Net_Backend.Repositories
         {
             return await _table.Include(u => u.Library).FirstOrDefaultAsync(u => u.Id == id);
         }
-
         public async Task<IEnumerable<User>> GetAllWithLibrariesAsync()
         {
             return await _table.Include(u => u.Library).ToListAsync();
         }
+        public async Task<IEnumerable<User>> GetAllAdminWithLibrariesAsync()
+        {
+            return await _table.Where(u => u.Role == Role.Admin).Include(u => u.Library).ToListAsync();
+        }
+
     }
 }

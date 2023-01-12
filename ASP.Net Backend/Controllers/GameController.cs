@@ -1,7 +1,7 @@
 ﻿using ASP.Net_Backend.Enums;
 using ASP.Net_Backend.Models;
 using ASP.Net_Backend.Models.DTOs.Games;
-using ASP.Net_Backend.Services;
+using ASP.Net_Backend.Services.GameService;
 using AutoMapper;
 using Lab4_13.Helpers.Attributes;
 using Microsoft.AspNetCore.Http;

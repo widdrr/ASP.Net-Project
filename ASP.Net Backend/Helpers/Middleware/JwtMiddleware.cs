@@ -1,5 +1,5 @@
 ﻿using ASP.Net_Backend.Helpers.Authorization;
-using ASP.Net_Backend.Services;
+using ASP.Net_Backend.Services.UserService;
 
 namespace ASP.Net_Backend.Helpers.Middleware
 {

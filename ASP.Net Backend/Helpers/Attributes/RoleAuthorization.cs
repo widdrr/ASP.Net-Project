@@ -17,19 +17,21 @@ namespace Lab4_13.Helpers.Attributes
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            var unauthorizedStatusObject = new JsonResult(new { Message = "Unauthorized" })
-            { StatusCode = StatusCodes.Status401Unauthorized };
+            var errorStatusObject =
+                new JsonResult(new { Message = "Unauthorized" });
 
-
-            if (_roles == null)
-            {
-                context.Result = unauthorizedStatusObject;
-            }
             var user = (User?)context.HttpContext.Items["User"];
-            if (user == null || !_roles!.Contains(user.Role))
+            if (_roles == null || user == null)
             {
-                //to do, implement forbidden response
-                context.Result = unauthorizedStatusObject;
+                errorStatusObject.StatusCode = StatusCodes.Status401Unauthorized;
+                context.Result = errorStatusObject;
+                return;
+            }
+
+            if (!_roles!.Contains(user.Role))
+            {
+                errorStatusObject.StatusCode= StatusCodes.Status403Forbidden;
+                context.Result = errorStatusObject;
             }
         }
     }
