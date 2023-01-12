@@ -1,7 +1,7 @@
-﻿using ASP.Net_Backend.Models.Associations;
+﻿using Backend.Models.Associations;
 using Microsoft.EntityFrameworkCore;
 
-namespace ASP.Net_Backend.Models
+namespace Backend.Models
 {
     public class Purchase
     {

@@ -1,4 +1,4 @@
-﻿namespace ASP.Net_Backend.Models.DTOs.Games
+﻿namespace Backend.Models.DTOs.Games
 {
     public class GameResponseDto
     {

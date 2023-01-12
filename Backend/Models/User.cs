@@ -1,11 +1,11 @@
-﻿using ASP.Net_Backend.Enums;
-using ASP.Net_Backend.Models.Base;
-using ASP.Net_Backend.Models.DTOs.Users;
+﻿using Backend.Enums;
+using Backend.Models.Base;
+using Backend.Models.DTOs.Users;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using BCryptNet = BCrypt.Net.BCrypt;
 
-namespace ASP.Net_Backend.Models
+namespace Backend.Models
 {
     public class User : BaseEntity
     {

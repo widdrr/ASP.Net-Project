@@ -1,9 +1,9 @@
-﻿using ASP.Net_Backend.Data;
-using ASP.Net_Backend.Models;
-using ASP.Net_Backend.Repositories.BaseRepository;
+﻿using Backend.Data;
+using Backend.Models;
+using Backend.Repositories.BaseRepository;
 using Microsoft.EntityFrameworkCore;
 
-namespace ASP.Net_Backend.Repositories.TransactionRepository
+namespace Backend.Repositories.TransactionRepository
 {
     public class TransactionRepository : BaseRepository<Transaction>, ITransactionRepository
     {

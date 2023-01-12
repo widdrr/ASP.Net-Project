@@ -1,4 +1,4 @@
-﻿namespace ASP.Net_Backend.Models.Associations
+﻿namespace Backend.Models.Associations
 {
     public class Addition
     {

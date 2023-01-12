@@ -1,11 +1,11 @@
-﻿using ASP.Net_Backend.Models;
+﻿using Backend.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace ASP.Net_Backend.Helpers.Authorization
+namespace Backend.Helpers.Authorization
 {
     public class JwtUtility : IJwtUtility
     {

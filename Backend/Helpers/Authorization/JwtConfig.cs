@@ -1,4 +1,4 @@
-﻿namespace ASP.Net_Backend.Helpers.Authorization
+﻿namespace Backend.Helpers.Authorization
 {
     public class JwtConfig
     {

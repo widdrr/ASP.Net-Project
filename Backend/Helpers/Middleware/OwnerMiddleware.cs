@@ -1,4 +1,4 @@
-﻿namespace ASP.Net_Backend.Helpers.Middleware
+﻿namespace Backend.Helpers.Middleware
 {
     public class OwnerMiddleware
     {

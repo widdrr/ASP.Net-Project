@@ -1,14 +1,14 @@
-﻿using ASP.Net_Backend.Models.Base;
-using ASP.Net_Backend.Repositories;
-using ASP.Net_Backend.Repositories.BaseRepository;
-using ASP.Net_Backend.Repositories.GameRepository;
-using ASP.Net_Backend.Repositories.TransactionRepository;
-using ASP.Net_Backend.Repositories.UserRepository;
+﻿using Backend.Models.Base;
+using Backend.Repositories;
+using Backend.Repositories.BaseRepository;
+using Backend.Repositories.GameRepository;
+using Backend.Repositories.TransactionRepository;
+using Backend.Repositories.UserRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Data.SqlClient;
 
-namespace ASP.Net_Backend.Data
+namespace Backend.Data
 {
     public class UnitOfWork : IUnitOfWork
     {

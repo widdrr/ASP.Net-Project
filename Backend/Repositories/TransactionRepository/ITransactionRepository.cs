@@ -1,7 +1,7 @@
-﻿using ASP.Net_Backend.Models;
-using ASP.Net_Backend.Repositories.BaseRepository;
+﻿using Backend.Models;
+using Backend.Repositories.BaseRepository;
 
-namespace ASP.Net_Backend.Repositories.TransactionRepository
+namespace Backend.Repositories.TransactionRepository
 {
     public interface ITransactionRepository : IBaseRepository<Transaction>
     {

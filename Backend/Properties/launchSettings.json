@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "ASP.Net_Backend": {
+    "Backend": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

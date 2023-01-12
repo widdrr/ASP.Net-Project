@@ -1,11 +1,11 @@
-using ASP.Net_Backend.Data;
-using ASP.Net_Backend.Helpers.Authorization;
-using ASP.Net_Backend.Helpers.Seeders;
-using ASP.Net_Backend.Helpers.Extensions;
+using Backend.Data;
+using Backend.Helpers.Authorization;
+using Backend.Helpers.Seeders;
+using Backend.Helpers.Extensions;
 using Microsoft.EntityFrameworkCore;
-using ASP.Net_Backend.Repositories;
-using ASP.Net_Backend.Services;
-using ASP.Net_Backend.Helpers.Middleware;
+using Backend.Repositories;
+using Backend.Services;
+using Backend.Helpers.Middleware;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);

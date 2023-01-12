@@ -1,9 +1,9 @@
-﻿using ASP.Net_Backend.Data;
-using ASP.Net_Backend.Models;
-using ASP.Net_Backend.Models.Associations;
+﻿using Backend.Data;
+using Backend.Models;
+using Backend.Models.Associations;
 using BCryptNet = BCrypt.Net.BCrypt;
 
-namespace ASP.Net_Backend.Helpers.Seeders
+namespace Backend.Helpers.Seeders
 {
     public class DataSeeder
     {

@@ -1,7 +1,7 @@
-﻿using ASP.Net_Backend.Models;
-using ASP.Net_Backend.Models.DTOs.Users;
+﻿using Backend.Models;
+using Backend.Models.DTOs.Users;
 
-namespace ASP.Net_Backend.Services.UserService
+namespace Backend.Services.UserService
 {
     public interface IUserService
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ASP.Net_Backend.Models.DTOs.Users
+namespace Backend.Models.DTOs.Users
 {
     public class UserAuthRequestDto
     {

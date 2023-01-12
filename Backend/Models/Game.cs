@@ -1,9 +1,9 @@
-﻿using ASP.Net_Backend.Models.Associations;
-using ASP.Net_Backend.Models.Base;
+﻿using Backend.Models.Associations;
+using Backend.Models.Base;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
-namespace ASP.Net_Backend.Models
+namespace Backend.Models
 {
     [Index(nameof(Name), IsUnique = true)]
     public class Game : BaseEntity

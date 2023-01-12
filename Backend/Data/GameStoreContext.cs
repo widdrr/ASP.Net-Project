@@ -1,7 +1,7 @@
-﻿using ASP.Net_Backend.Models;
-using ASP.Net_Backend.Models.Associations;
+﻿using Backend.Models;
+using Backend.Models.Associations;
 using Microsoft.EntityFrameworkCore;
-namespace ASP.Net_Backend.Data
+namespace Backend.Data
 {
     public class GameStoreContext : DbContext
     {

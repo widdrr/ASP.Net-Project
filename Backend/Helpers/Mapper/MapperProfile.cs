@@ -1,9 +1,9 @@
-﻿using ASP.Net_Backend.Models;
-using ASP.Net_Backend.Models.DTOs.Games;
-using ASP.Net_Backend.Models.DTOs.Users;
+﻿using Backend.Models;
+using Backend.Models.DTOs.Games;
+using Backend.Models.DTOs.Users;
 using AutoMapper;
 
-namespace ASP.Net_Backend.Helpers.Mapper
+namespace Backend.Helpers.Mapper
 {
     public class MapperProfile : Profile
     {

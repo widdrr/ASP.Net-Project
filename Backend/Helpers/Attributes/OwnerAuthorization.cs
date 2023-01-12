@@ -1,8 +1,8 @@
-﻿using ASP.Net_Backend.Models;
+﻿using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace ASP.Net_Backend.Helpers.Attributes
+namespace Backend.Helpers.Attributes
 {
     public class OwnerAuthorizationAttribute : Attribute, IAuthorizationFilter
     {

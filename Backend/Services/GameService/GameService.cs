@@ -1,10 +1,10 @@
-﻿using ASP.Net_Backend.Data;
-using ASP.Net_Backend.Models;
-using ASP.Net_Backend.Models.DTOs.Games;
-using ASP.Net_Backend.Repositories.GameRepository;
+﻿using Backend.Data;
+using Backend.Models;
+using Backend.Models.DTOs.Games;
+using Backend.Repositories.GameRepository;
 using AutoMapper;
 
-namespace ASP.Net_Backend.Services.GameService
+namespace Backend.Services.GameService
 {
     public class GameService : IGameService
     {

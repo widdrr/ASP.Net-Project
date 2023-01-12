@@ -1,14 +1,14 @@
-﻿using ASP.Net_Backend.Data;
-using ASP.Net_Backend.Enums;
-using ASP.Net_Backend.Helpers.Authorization;
-using ASP.Net_Backend.Models;
-using ASP.Net_Backend.Models.DTOs.Users;
-using ASP.Net_Backend.Repositories.TransactionRepository;
-using ASP.Net_Backend.Repositories.UserRepository;
+﻿using Backend.Data;
+using Backend.Enums;
+using Backend.Helpers.Authorization;
+using Backend.Models;
+using Backend.Models.DTOs.Users;
+using Backend.Repositories.TransactionRepository;
+using Backend.Repositories.UserRepository;
 using AutoMapper;
 using BCryptNet = BCrypt.Net.BCrypt;
 
-namespace ASP.Net_Backend.Services.UserService
+namespace Backend.Services.UserService
 {
     public class UserService : IUserService
     {

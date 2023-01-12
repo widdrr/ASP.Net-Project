@@ -1,4 +1,4 @@
-﻿namespace ASP.Net_Backend.Models.Base
+﻿namespace Backend.Models.Base
 {
     public interface IBaseEntity
     {

@@ -1,4 +1,4 @@
-﻿namespace ASP.Net_Backend.Enums
+﻿namespace Backend.Enums
 {
     public enum Role
     {

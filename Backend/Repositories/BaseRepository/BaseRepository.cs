@@ -1,9 +1,9 @@
-﻿using ASP.Net_Backend.Data;
-using ASP.Net_Backend.Models.Base;
+﻿using Backend.Data;
+using Backend.Models.Base;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
-namespace ASP.Net_Backend.Repositories.BaseRepository
+namespace Backend.Repositories.BaseRepository
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
     {
