@@ -49,7 +49,7 @@ namespace ASP.Net_Backend.Helpers.Authorization
             {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(appPrivateKey),
-                ValidateIssuer = true,
+                ValidateIssuer = false,
                 ValidateAudience = false,
                 ClockSkew = TimeSpan.Zero,
             };

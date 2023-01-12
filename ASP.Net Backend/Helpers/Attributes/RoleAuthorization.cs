@@ -1,5 +1,6 @@
 ﻿using ASP.Net_Backend.Enums;
 using ASP.Net_Backend.Models;
+using ASP.Net_Backend.Models.DTOs.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -16,7 +17,7 @@ namespace Lab4_13.Helpers.Attributes
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            var unauthorizedStatusObject = new JsonResult(new { Message = "Unauthorzed" })
+            var unauthorizedStatusObject = new JsonResult(new { Message = "Unauthorized" })
             { StatusCode = StatusCodes.Status401Unauthorized };
 
 
