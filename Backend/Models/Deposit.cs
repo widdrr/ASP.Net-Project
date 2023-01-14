@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ASP.Net_Backend.Models
+namespace Backend.Models
 {
     public class Deposit
     {

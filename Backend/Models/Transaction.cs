@@ -1,7 +1,7 @@
-﻿using ASP.Net_Backend.Models.Associations;
-using ASP.Net_Backend.Models.Base;
+﻿using Backend.Models.Associations;
+using Backend.Models.Base;
 
-namespace ASP.Net_Backend.Models
+namespace Backend.Models
 {
     public class Transaction : BaseEntity
     {

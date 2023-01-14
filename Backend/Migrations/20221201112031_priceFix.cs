@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace ASP.NetBackend.Migrations
+namespace Backend.Migrations
 {
     /// <inheritdoc />
     public partial class priceFix : Migration

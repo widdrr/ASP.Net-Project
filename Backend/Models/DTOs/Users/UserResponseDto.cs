@@ -1,7 +1,7 @@
-﻿using ASP.Net_Backend.Enums;
+﻿using Backend.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace ASP.Net_Backend.Models.DTOs.Users
+namespace Backend.Models.DTOs.Users
 {
     public class UserResponseDto
     {

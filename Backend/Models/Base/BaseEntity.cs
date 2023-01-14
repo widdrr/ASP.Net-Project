@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ASP.Net_Backend.Models.Base
+namespace Backend.Models.Base
 {
     public class BaseEntity : IBaseEntity
     {

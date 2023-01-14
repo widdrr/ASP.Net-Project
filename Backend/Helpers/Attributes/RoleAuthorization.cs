@@ -1,6 +1,6 @@
-﻿using ASP.Net_Backend.Enums;
-using ASP.Net_Backend.Models;
-using ASP.Net_Backend.Models.DTOs.Users;
+﻿using Backend.Enums;
+using Backend.Models;
+using Backend.Models.DTOs.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 

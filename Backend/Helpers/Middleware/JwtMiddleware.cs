@@ -1,7 +1,7 @@
-﻿using ASP.Net_Backend.Helpers.Authorization;
-using ASP.Net_Backend.Services.UserService;
+﻿using Backend.Helpers.Authorization;
+using Backend.Services.UserService;
 
-namespace ASP.Net_Backend.Helpers.Middleware
+namespace Backend.Helpers.Middleware
 {
     public class JwtMiddleware
     {

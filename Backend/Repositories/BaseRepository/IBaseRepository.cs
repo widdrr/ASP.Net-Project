@@ -1,6 +1,6 @@
-﻿using ASP.Net_Backend.Models.Base;
+﻿using Backend.Models.Base;
 
-namespace ASP.Net_Backend.Repositories.BaseRepository
+namespace Backend.Repositories.BaseRepository
 {
     public interface IBaseRepository<TEntity> where TEntity : BaseEntity
     {

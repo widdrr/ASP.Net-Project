@@ -1,10 +1,10 @@
-﻿using ASP.Net_Backend.Data;
-using ASP.Net_Backend.Enums;
-using ASP.Net_Backend.Models;
-using ASP.Net_Backend.Repositories.BaseRepository;
+﻿using Backend.Data;
+using Backend.Enums;
+using Backend.Models;
+using Backend.Repositories.BaseRepository;
 using Microsoft.EntityFrameworkCore;
 
-namespace ASP.Net_Backend.Repositories.UserRepository
+namespace Backend.Repositories.UserRepository
 {
     public class UserRepository : BaseRepository<User>, IUserRepository
     {

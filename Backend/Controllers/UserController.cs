@@ -1,11 +1,11 @@
-﻿using ASP.Net_Backend.Enums;
-using ASP.Net_Backend.Models.DTOs.Users;
-using ASP.Net_Backend.Services.UserService;
+﻿using Backend.Enums;
+using Backend.Models.DTOs.Users;
+using Backend.Services.UserService;
 using AutoMapper;
 using Lab4_13.Helpers.Attributes;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ASP.Net_Backend.Controllers
+namespace Backend.Controllers
 {
     [Route("api/user")]
     [ApiController]

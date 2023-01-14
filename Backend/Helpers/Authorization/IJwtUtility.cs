@@ -1,6 +1,6 @@
-﻿using ASP.Net_Backend.Models;
+﻿using Backend.Models;
 
-namespace ASP.Net_Backend.Helpers.Authorization
+namespace Backend.Helpers.Authorization
 {
     public interface IJwtUtility
     {

@@ -1,7 +1,7 @@
-﻿using ASP.Net_Backend.Models;
-using ASP.Net_Backend.Repositories.BaseRepository;
+﻿using Backend.Models;
+using Backend.Repositories.BaseRepository;
 
-namespace ASP.Net_Backend.Repositories.GameRepository
+namespace Backend.Repositories.GameRepository
 {
     public interface IGameRepository : IBaseRepository<Game>
     {

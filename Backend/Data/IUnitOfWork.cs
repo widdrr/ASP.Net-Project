@@ -1,9 +1,9 @@
-﻿using ASP.Net_Backend.Repositories.GameRepository;
-using ASP.Net_Backend.Repositories.TransactionRepository;
-using ASP.Net_Backend.Repositories.UserRepository;
+﻿using Backend.Repositories.GameRepository;
+using Backend.Repositories.TransactionRepository;
+using Backend.Repositories.UserRepository;
 using Microsoft.EntityFrameworkCore;
 
-namespace ASP.Net_Backend.Data
+namespace Backend.Data
 {
     public interface IUnitOfWork
     {

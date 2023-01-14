@@ -4,14 +4,8 @@
     {
       "type": "chrome",
       "request": "launch",
-      "name": "localhost (Chrome)",
-      "url": "https://localhost:4200",
-      "webRoot": "${workspaceFolder}"
-    },
-    {
-      "type": "edge",
-      "request": "launch",
-      "name": "localhost (Edge)",
+      "runtimeExecutable":"C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
+      "name": "localhost",
       "url": "https://localhost:4200",
       "webRoot": "${workspaceFolder}"
     }

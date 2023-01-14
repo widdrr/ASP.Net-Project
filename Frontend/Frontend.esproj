@@ -1,9 +1,16 @@
 <Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.26-alpha">
   <PropertyGroup Label="Globals">
-    <ProjectGuid>f8c505dc-a385-44ee-b718-34a95e87ec2b</ProjectGuid>
+    <ProjectGuid>73c73641-d5b9-4a86-9827-3d399cb9bff8</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
     <StartupCommand>npm start</StartupCommand>
     <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\app\core\pipes\" />
+    <Folder Include="src\app\data\" />
+    <Folder Include="src\app\shared\" />
+    <Folder Include="src\app\pages\" />
+    <Folder Include="src\environments\" />
+  </ItemGroup>
 </Project>
