@@ -6,4 +6,11 @@
     <StartupCommand>npm start</StartupCommand>
     <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\app\core\pipes\" />
+    <Folder Include="src\app\data\" />
+    <Folder Include="src\app\shared\" />
+    <Folder Include="src\app\pages\" />
+    <Folder Include="src\environments\" />
+  </ItemGroup>
 </Project>
