@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.26-alpha">
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.66-alpha">
   <PropertyGroup Label="Globals">
     <ProjectGuid>73c73641-d5b9-4a86-9827-3d399cb9bff8</ProjectGuid>
   </PropertyGroup>
@@ -7,10 +7,11 @@
     <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\app\core\pipes\" />
+    <Folder Include="src\app\core\services\game\" />
+    <Folder Include="src\app\core\services\library\" />
+    <Folder Include="src\app\core\services\transaction\" />
     <Folder Include="src\app\data\" />
     <Folder Include="src\app\shared\" />
-    <Folder Include="src\app\pages\" />
     <Folder Include="src\environments\" />
   </ItemGroup>
 </Project>

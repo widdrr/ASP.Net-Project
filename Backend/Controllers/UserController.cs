@@ -59,10 +59,15 @@ namespace Backend.Controllers
         }
         
         [HttpPost("add")]
-        [RoleAuthorization(Role.Admin)]
         public async Task<IActionResult> AddUser(UserRequestDto user)
         {
-            return Ok(await _userService.CreateAsync(user));
+            var newUser = await _userService.CreateAsync(user);
+            if (newUser == null)
+                return NotFound();
+            
+            var userDto = new UserResponseDto(newUser);
+            return Ok(userDto);
+
         }
 
         [HttpPost("admin/add")]
@@ -96,7 +101,7 @@ namespace Backend.Controllers
             {
                 return BadRequest("Username or password is invalid!");
             }
-            return Ok(token);
+            return Ok(new { token });
         }
     }
 }
