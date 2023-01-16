@@ -73,18 +73,6 @@ namespace Backend.Controllers
             return Ok();
         }
 
-        [HttpPost("add")]
-        public async Task<IActionResult> AddUser(UserRequestDto user)
-        {
-            var newUser = await _userService.CreateAsync(user);
-            if (newUser == null)
-                return BadRequest("Invalid Values");
-
-            var userDto = new UserResponseDto(newUser);
-            return Ok(userDto);
-
-        }
-
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate(UserAuthRequestDto user)
         {
