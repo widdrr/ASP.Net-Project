@@ -7,11 +7,20 @@
     <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\app\core\services\game\" />
-    <Folder Include="src\app\core\services\library\" />
-    <Folder Include="src\app\core\services\transaction\" />
     <Folder Include="src\app\data\" />
     <Folder Include="src\app\shared\" />
     <Folder Include="src\environments\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptConfiguration Remove="src\app\core\services\library\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\core\services\library\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptConfiguration Remove="src\app\core\services\transaction\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\core\services\transaction\**" />
   </ItemGroup>
 </Project>

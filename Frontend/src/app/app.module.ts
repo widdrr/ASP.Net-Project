@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { PricePipe } from './core/pipes/price/price.pipe';
+import { PricePipe } from './core/pipes/price.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameComponent } from './pages/game/game.component';
 import { AppRoutingModule } from './app-routing.module';
