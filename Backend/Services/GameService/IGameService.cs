@@ -8,6 +8,7 @@ namespace Backend.Services.GameService
         Task<Game?> GetByIdAsync(Guid id);
         Task<IEnumerable<Game>> GetAllAsync();
         Task<Game?> CreateAsync(GameRequestDto game);
+        Task<Game?> UpdateAsync(Guid id, GameRequestDto game);
         Task DeleteByIdAsync(Guid id);
         Task DeleteAllAsync();
     }

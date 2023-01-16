@@ -28,6 +28,7 @@ namespace Backend.Controllers
             var games = await _gameService.GetAllAsync();
             if(!games.Any())
                 return NotFound();
+
             var gameDtos = games.Select(game => _mapper.Map<GameResponseDto>(game));
             return Ok(gameDtos);
         }
@@ -42,12 +43,31 @@ namespace Backend.Controllers
             var gameDto = _mapper.Map<GameResponseDto>(game);
             return Ok(gameDto);
         }
+
         [HttpPost("add")]
         [RoleAuthorization(Role.Admin)]
         public async Task<IActionResult> AddGame(GameRequestDto game)
         {
-            return Ok(await _gameService.CreateAsync(game));
+            var newGame = await _gameService.CreateAsync(game);
+            if (newGame == null)
+                return BadRequest("Game already exists");
+            
+            var gameDto = _mapper.Map<GameResponseDto>(newGame);
+            return Ok(gameDto);
         }
+
+        [HttpPut("{id}")]
+        [RoleAuthorization(Role.Admin)]
+        public async Task<IActionResult> UpdateGame(Guid id,GameRequestDto game)
+        {
+            var newGame = await _gameService.UpdateAsync(id,game);
+            if (newGame == null)
+                return BadRequest("Invalid values");
+            
+            var newGameDto = _mapper.Map<GameResponseDto>(newGame);
+            return Ok(newGameDto);
+        }
+
         [HttpDelete("")]
         [RoleAuthorization(Role.Admin)]
         public async Task<IActionResult> RemoveAll()

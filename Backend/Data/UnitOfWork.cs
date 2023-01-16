@@ -88,6 +88,7 @@ namespace Backend.Data
             catch (SqlException ex)
             {
                 Console.WriteLine(ex);
+                throw ex;
             }
         }
         

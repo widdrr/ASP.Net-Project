@@ -7,6 +7,7 @@ using Backend.Repositories.TransactionRepository;
 using Backend.Repositories.UserRepository;
 using AutoMapper;
 using BCryptNet = BCrypt.Net.BCrypt;
+using Backend.Models.DTOs.Games;
 
 namespace Backend.Services.UserService
 {
@@ -39,30 +40,45 @@ namespace Backend.Services.UserService
         }
         public async Task<User?> CreateAsync(UserRequestDto user)
         {
-            var existingUser = await _userRepository.GetByUsernameAsync(user.Username);
-            if (existingUser != null)
+            var newUser = new User(user);
+            await _userRepository.CreateAsync(newUser);
+            try
+            {
+                await _unitOfWork.SaveAsync();
+            }
+            catch (Exception)
             {
                 return null;
             }
-
-            var newUser = new User(user);
-            await _userRepository.CreateAsync(newUser);
-            await _unitOfWork.SaveAsync();
             return newUser;
         }
-        public async Task<User?> CreateAdminAsync(UserRequestDto user)
+
+        public async Task<User?> UpdateAsync(Guid id, UserRequestDto user)
         {
-            var existingUser = await _userRepository.GetByUsernameAsync(user.Username);
-            if (existingUser != null)
+            var existingUser = await _userRepository.GetByIdAsync(id);
+
+            if (existingUser == null)
+            {
+                existingUser = new User(user);
+                await _userRepository.CreateAsync(existingUser);
+
+            }
+            else
+            {
+                existingUser.Username = user.Username;
+                existingUser.Email = user.Email;
+                existingUser.PasswordHash = BCryptNet.HashPassword(user.Password);
+            }
+
+            try
+            {
+                await _unitOfWork.SaveAsync();
+            }
+            catch (Exception)
             {
                 return null;
             }
-
-            var newUser = new User(user);
-            newUser.Role = Role.Admin;
-            await _userRepository.CreateAsync(newUser);
-            await _unitOfWork.SaveAsync();
-            return newUser;
+            return existingUser;
         }
         public async Task DeleteByIdAsync(Guid id)
         {
