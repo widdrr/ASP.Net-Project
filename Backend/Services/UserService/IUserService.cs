@@ -9,7 +9,7 @@ namespace Backend.Services.UserService
         Task<IEnumerable<User>> GetAllAsync();
         Task<IEnumerable<User>> GetAllAdminAsync();
         Task<User?> CreateAsync(UserRequestDto userReq);
-        Task<User?> CreateAdminAsync(UserRequestDto userReq);
+        Task<User?> UpdateAsync(Guid id,UserRequestDto userReq);
         Task DeleteByIdAsync(Guid id);
         Task DeleteAllAsync();
         Task<string?> AuthenticateAsync(UserAuthRequestDto userReq);

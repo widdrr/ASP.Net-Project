@@ -28,17 +28,46 @@ namespace Backend.Services.GameService
         }
         public async Task<Game?> CreateAsync(GameRequestDto game)
         {
-            var existingGame = await _gameRepository.GetByNameAsync(game.Name);
-
-            if (existingGame != null)
+            var newGame = _mapper.Map<Game>(game);
+            await _gameRepository.CreateAsync(newGame);
+            try
+            {
+                await _unitOfWork.SaveAsync();
+            }
+            catch(Exception)
             {
                 return null;
             }
-
-            var newGame = _mapper.Map<Game>(game);
-            await _gameRepository.CreateAsync(newGame);
-            await _unitOfWork.SaveAsync();
             return newGame;
+        }
+
+        public async Task<Game?> UpdateAsync(Guid id, GameRequestDto game)
+        {
+            var existingGame = await _gameRepository.GetByIdAsync(id);
+
+            if (existingGame == null)
+            {
+                existingGame = _mapper.Map<Game>(game);
+                await _gameRepository.CreateAsync(existingGame);
+
+            }
+            else
+            {
+                existingGame.Name = game.Name;
+                existingGame.Developer = game.Developer;
+                existingGame.Price = game.Price;
+                existingGame.Developer = game.Developer;
+            }
+
+            try
+            {
+                await _unitOfWork.SaveAsync();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            return existingGame;
         }
         public async Task DeleteByIdAsync(Guid id)
         {

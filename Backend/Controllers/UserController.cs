@@ -4,6 +4,7 @@ using Backend.Services.UserService;
 using AutoMapper;
 using Lab4_13.Helpers.Attributes;
 using Microsoft.AspNetCore.Mvc;
+using Backend.Helpers.Attributes;
 
 namespace Backend.Controllers
 {
@@ -63,18 +64,22 @@ namespace Backend.Controllers
         {
             var newUser = await _userService.CreateAsync(user);
             if (newUser == null)
-                return NotFound();
+                return BadRequest("Invalid Values");
             
             var userDto = new UserResponseDto(newUser);
             return Ok(userDto);
 
         }
-
-        [HttpPost("admin/add")]
-        [RoleAuthorization(Role.Admin)]
-        public async Task<IActionResult> AddAdmin(UserRequestDto user)
+        [HttpPut("{id}")]
+        [OwnerAuthorization]
+        public async Task<IActionResult> UpdateUser(Guid id,UserRequestDto user)
         {
-            return Ok(await _userService.CreateAdminAsync(user));
+            var newUser = await _userService.UpdateAsync(id,user);
+            if (newUser == null)
+                return BadRequest("Invalid values");
+
+            var userDto = new UserResponseDto(newUser);
+            return Ok(userDto);
         }
 
         [HttpDelete("")]

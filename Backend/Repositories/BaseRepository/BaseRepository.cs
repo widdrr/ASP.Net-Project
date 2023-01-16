@@ -18,12 +18,12 @@ namespace Backend.Repositories.BaseRepository
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await _table.ToListAsync();
+            return await _table.AsNoTracking().ToListAsync();
         }
 
         public async Task CreateAsync(TEntity entity)
         {
-                await _table.AddAsync(entity);
+            await _table.AddAsync(entity);
         }
 
         public void Update(TEntity entity)
