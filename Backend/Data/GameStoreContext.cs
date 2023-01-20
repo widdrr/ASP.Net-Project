@@ -7,8 +7,10 @@ namespace Backend.Data
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Game> Games { get; set; }
-        public DbSet<Library> Libraries { get; set; }
-        public DbSet<Transaction> Transactions {get; set; }
+        public DbSet<Library> Libraries { get; set;}
+        public DbSet<Transaction> Transactions {get; set;}
+        public DbSet<Deposit> Deposits { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
 
         public GameStoreContext(DbContextOptions<GameStoreContext> options) : base(options)
         {
@@ -74,7 +76,6 @@ namespace Backend.Data
                 .HasMany(p => p.GamePurchases)
                 .WithOne(gp => gp.Purchase)
                 .HasForeignKey(gp => gp.TransactionId);
-
 
             base.OnModelCreating(modelBuilder);
         }

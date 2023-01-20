@@ -12,42 +12,44 @@ namespace Backend.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
+        private readonly IMapper _mapper;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetById(Guid userId)
         {
-            var user = await _userService.GetByIdAsync(id);
+            var user = await _userService.GetByIdAsync(userId);
 
             if (user == null)
                 return NotFound();
 
-            var userDto = new UserResponseDto(user);
+            var userDto = _mapper.Map<UserResponseDto>(user);
             return Ok(userDto);
         }
-        
-        [HttpPut("{id}")]
+
+        [HttpPut("{userId}")]
         [OwnerAuthorization]
-        public async Task<IActionResult> UpdateUser(Guid id,UserRequestDto user)
+        public async Task<IActionResult> UpdateUser(Guid userId, UserRequestDto user)
         {
-            var newUser = await _userService.UpdateAsync(id,user);
+            var newUser = await _userService.UpdateAsync(userId, user);
             if (newUser == null)
                 return BadRequest("Invalid values");
 
-            var userDto = new UserResponseDto(newUser);
+            var userDto = _mapper.Map<UserResponseDto>(newUser);
             return Ok(userDto);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{userId}")]
         [RoleAuthorization(Role.Admin)]
-        public async Task<IActionResult> RemoveUser(Guid id)
+        public async Task<IActionResult> RemoveUser(Guid userId)
         {
-            await _userService.DeleteByIdAsync(id);
+            await _userService.DeleteByIdAsync(userId);
             return Ok();
         }
 
@@ -60,7 +62,7 @@ namespace Backend.Controllers
                 return NotFound();
 
 
-            var userDtos = users.Select(user => new UserResponseDto(user)).ToList();
+            var userDtos = users.Select(user => _mapper.Map<UserResponseDto>(user)).ToList();
             return Ok(userDtos);
 
         }
@@ -76,12 +78,12 @@ namespace Backend.Controllers
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate(UserAuthRequestDto user)
         {
-            var token = await _userService.AuthenticateAsync(user);
-            if (token == null)
+            var response = await _userService.AuthenticateAsync(user);
+            if (response == null)
             {
                 return BadRequest("Username or password is invalid!");
             }
-            return Ok(new { token });
+            return Ok(response);
         }
 
         [HttpGet("admin")]
@@ -94,9 +96,16 @@ namespace Backend.Controllers
                 return NotFound();
 
 
-            var userDtos = users.Select(user => new UserResponseDto(user)).ToList();
+            var userDtos = users.Select(user => _mapper.Map<UserResponseDto>(user)).ToList();
             return Ok(userDtos);
 
+        }
+
+        [HttpGet("{userId}/balance")]
+        [OwnerAuthorization]
+        public async Task<IActionResult> GetAccountBalance(Guid id)
+        {
+            return Ok(await _userService.GetAccountBalanceAsync(id));
         }
         
     }
