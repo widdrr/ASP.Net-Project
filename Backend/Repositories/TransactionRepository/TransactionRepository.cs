@@ -1,5 +1,7 @@
 ﻿using Backend.Data;
 using Backend.Models;
+using Backend.Models.Associations;
+using Backend.Models.DTOs.Transactions;
 using Backend.Repositories.BaseRepository;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,37 +10,53 @@ namespace Backend.Repositories.TransactionRepository
     public class TransactionRepository : BaseRepository<Transaction>, ITransactionRepository
     {
         private readonly DbSet<Deposit> _deposits;
-        private readonly DbSet<Purchase> _purchases;
+        private readonly DbSet<GamePurchase> _gamePurchases;
         public TransactionRepository(GameStoreContext gameStoreContext) : base(gameStoreContext)
         {
             _deposits = _context.Deposits;
-            _purchases = _context.Purchases;
+            _gamePurchases = _context.GamePurchases;
         }
 
-        public async Task<IEnumerable<Transaction>> GetTransactionsForUser(Guid userId)
+        public async Task<IEnumerable<TransactionDto>> GetTransactionsForUserAsync(Guid userId)
         {
-            return await _table.AsNoTracking()
-                        .Include(t => t.Deposit)
-                        .Include(t => t.Purchase)
-                        .ThenInclude(p => p!.GamePurchases)
-                        .Where(t => t.UserId == userId)
-                        .ToListAsync();
+            var deposits = await GetDepositsForUserAsync(userId);
+            var purchases = await GetPurchasesForUserAsync(userId);
+
+            return deposits.Union(purchases);
         }
-        public async Task<IEnumerable<Deposit>> GetDepositsForUser(Guid userId)
+        public async Task<IEnumerable<TransactionDto>> GetDepositsForUserAsync(Guid userId)
         {
-            return await _deposits.AsNoTracking()
-                .Include(d => d.Transaction)
-                .Where(d => d.Transaction.UserId == userId)
-                .ToListAsync();
+            return await (from t in _table.AsNoTracking()
+                         where t.UserId == userId
+                         join d in _deposits
+                            on t.Id equals d.TransactionId
+                         select new TransactionDto
+                         {  
+                            Id = t.Id,
+                            UserId = t.UserId,
+                            Date = t.Date,
+                            Type = "Deposit",
+                            Sum = d.Sum
+                         })
+                         .ToListAsync();
         }
 
-        public async Task<IEnumerable<Purchase>> GetPurchasesForUser(Guid userId)
+        public async Task<IEnumerable<TransactionDto>> GetPurchasesForUserAsync(Guid userId)
         {
-            return await _purchases.AsNoTracking()
-                .Include(p => p.Transaction)
-                .Where(p => p.Transaction.UserId == userId)
-                .Include(p => p.GamePurchases)
-                .ToListAsync();
+            return await (from t in _table.AsNoTracking()
+                          where t.UserId == userId
+                          join gp in _gamePurchases
+                            on t.Id equals gp.TransactionId
+                            into purchases
+                          select new TransactionDto
+                          {
+                              Id = t.Id,
+                              UserId = t.UserId,
+                              Date = t.Date,
+                              Type = "Purchase",
+                              Sum = purchases.Sum(p => p.Price)
+                          })
+                          .ToListAsync();      
         }
 
     }

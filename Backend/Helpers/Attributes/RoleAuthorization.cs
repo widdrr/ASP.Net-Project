@@ -4,7 +4,7 @@ using Backend.Models.DTOs.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Lab4_13.Helpers.Attributes
+namespace Backend.Helpers.Attributes
 {
     public class RoleAuthorizationAttribute : Attribute, IAuthorizationFilter
     {

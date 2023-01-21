@@ -7,6 +7,7 @@ namespace Backend.Services.GameService
     {
         Task<Game?> GetByIdAsync(Guid id);
         Task<IEnumerable<Game>> GetAllAsync();
+        Task<IEnumerable<Game>> GetByIdRangeAsync(IEnumerable<Guid> ids);
         Task<Game?> CreateAsync(GameRequestDto game);
         Task<Game?> UpdateAsync(Guid id, GameRequestDto game);
         Task DeleteByIdAsync(Guid id);

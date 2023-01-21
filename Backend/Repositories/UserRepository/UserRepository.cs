@@ -17,7 +17,10 @@ namespace Backend.Repositories.UserRepository
         }
         public async Task<User?> GetByIdWithLibraryAsync(Guid id)
         {
-            return await _table.Include(u => u.Library).FirstOrDefaultAsync(u => u.Id == id);
+            return await _table
+                        .Include(u => u.Library)
+                        .ThenInclude(l => l!.Games)
+                        .FirstOrDefaultAsync(u => u.Id == id);
         }
         public async Task<IEnumerable<User>> GetAllWithLibrariesAsync()
         {

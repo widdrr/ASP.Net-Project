@@ -88,7 +88,7 @@ namespace Backend.Helpers.Seeders
                 _context.Add(new Library
                 {
                     User = widz,
-                    GameLibraries = new List<Addition>
+                    Games = new List<Addition>
                     {
                         new Addition
                         {

@@ -25,7 +25,7 @@ namespace Backend.Controllers
         [OwnerAuthorization]
         public async Task<IActionResult> GetTransactionHistoryAsync(Guid userId)
         {
-            var res = await _transactionService.GetTransactionsForUser(userId);
+            var res = await _transactionService.GetTransactionsForUserAsync(userId);
             return Ok(res);
         }
         [HttpPost("{userId}/deposit")]

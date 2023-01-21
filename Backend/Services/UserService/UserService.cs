@@ -108,14 +108,18 @@ namespace Backend.Services.UserService
         }
         public async Task<double> GetAccountBalanceAsync(Guid userId)
         {
-            double accountBalance = 0;
-            var deposits = await _transactionRepository.GetDepositsForUser(userId);
-            var purchases = await _transactionRepository.GetPurchasesForUser(userId);
+            var transactions = _transactionRepository.GetTransactionsForUserAsync(userId);
 
-            accountBalance += deposits.Sum(d => d.Sum);
-            accountBalance -= purchases.Sum(p => p.GamePurchases.Sum(p => p.Price));
-
-            return accountBalance;
+            var groupedSum = (await transactions)
+                             .GroupBy(
+                              t => t.Type,
+                              (type, transactions) => new
+                              {
+                                  Type = type,
+                                  Sum = transactions.Sum(t => t.Sum),
+                              })
+                             .ToDictionary(t => t.Type);
+            return groupedSum["Deposit"].Sum - groupedSum["Purchase"].Sum;
         }
     }
 }

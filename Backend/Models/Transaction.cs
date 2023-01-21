@@ -29,7 +29,7 @@ namespace Backend.Models
             };
             Purchase = null;
         }
-        public Transaction(Guid userId, PurchaseRequestDto purchase)
+        public Transaction(Guid userId, IEnumerable<Game> purchase)
         {
             Id = Guid.NewGuid();
             UserId = userId;
@@ -38,10 +38,10 @@ namespace Backend.Models
             {
                 TransactionId = Id,
                 Transaction = this,
-                GamePurchases = purchase.Purchases.Select(dto => new GamePurchase
+                GamePurchases = purchase.Select(game => new GamePurchase
                     {
-                        GameId = dto.GameId,
-                        Price = dto.Price,
+                        GameId = game.Id,
+                        Price = game.Price,
                         TransactionId = Id,
                     }).ToList()
             };

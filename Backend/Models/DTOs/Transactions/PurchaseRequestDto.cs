@@ -2,6 +2,6 @@
 {
     public class PurchaseRequestDto
     {
-        public IEnumerable<GamePurchaseDto> Purchases { get; set; } = null!;
+        public IEnumerable<Guid> Games { get; set; } = null!;
     }
 }

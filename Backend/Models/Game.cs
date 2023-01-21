@@ -15,7 +15,7 @@ namespace Backend.Models
         [Range(0,999)]
         public double Price { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public ICollection<Addition>? GameLibraries { get; set; }
+        public ICollection<Addition>? GameAdditions { get; set; }
         public ICollection<GamePurchase>? GamePurchases { get; set; }
     }
 }

@@ -12,6 +12,9 @@ namespace Backend.Data
         public DbSet<Deposit> Deposits { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
 
+        //I had no choice but to add DbSets to this associative entity in order to join with it
+        public DbSet<GamePurchase> GamePurchases { get; set; }
+
         public GameStoreContext(DbContextOptions<GameStoreContext> options) : base(options)
         {
 
@@ -36,12 +39,12 @@ namespace Backend.Data
                 .HasKey(gl => new { gl.LibraryId, gl.GameId });
 
             modelBuilder.Entity<Game>()
-                .HasMany(g => g.GameLibraries)
+                .HasMany(g => g.GameAdditions)
                 .WithOne(gl => gl.Game)
                 .HasForeignKey(gl => gl.GameId);
             
             modelBuilder.Entity<Library>()
-                .HasMany(l => l.GameLibraries)
+                .HasMany(l => l!.Games)
                 .WithOne(gl => gl.Library)
                 .HasForeignKey(gl => gl.LibraryId);
 

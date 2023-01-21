@@ -10,6 +10,6 @@ namespace Backend.Models
         public Guid UserId { get; set; }
         [JsonIgnore]
         public User User { get; set; } = null!;
-        public ICollection<Addition> GameLibraries { get; set; } = null!;
+        public ICollection<Addition> Games { get; set; } = null!;
     }
 }
