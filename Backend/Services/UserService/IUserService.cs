@@ -12,7 +12,7 @@ namespace Backend.Services.UserService
         Task<User?> UpdateAsync(Guid id,UserRequestDto userReq);
         Task DeleteByIdAsync(Guid id);
         Task DeleteAllAsync();
-        Task<string?> AuthenticateAsync(UserAuthRequestDto userReq);
-        Task<int> GetAccountBalance(Guid userId);
+        Task<UserAuthResponseDto?> AuthenticateAsync(UserAuthRequestDto userReq);
+        Task<double> GetAccountBalanceAsync(Guid userId);
     }
 }

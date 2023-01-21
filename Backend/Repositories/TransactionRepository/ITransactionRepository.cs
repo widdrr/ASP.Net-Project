@@ -1,11 +1,13 @@
 ﻿using Backend.Models;
+using Backend.Models.DTOs.Transactions;
 using Backend.Repositories.BaseRepository;
 
 namespace Backend.Repositories.TransactionRepository
 {
     public interface ITransactionRepository : IBaseRepository<Transaction>
     {
-        Task<IEnumerable<Transaction>> getDepositsForUser(Guid userId);
-        Task<IEnumerable<Transaction>> getPurchasesForUser(Guid userId);
+        Task<IEnumerable<TransactionDto>> GetTransactionsForUserAsync(Guid userId);
+        Task<IEnumerable<TransactionDto>> GetDepositsForUserAsync(Guid userId);
+        Task<IEnumerable<TransactionDto>> GetPurchasesForUserAsync(Guid userId);
     }
 }

@@ -20,7 +20,14 @@ namespace Backend.Repositories.BaseRepository
         {
             return await _table.AsNoTracking().ToListAsync();
         }
-
+        public async Task<TEntity?> GetByIdAsync(Guid id)
+        {
+            return await _table.FirstOrDefaultAsync(e => e.Id == id);
+        }
+        public async Task<IEnumerable<TEntity>> GetByIdRangeAsync(IEnumerable<Guid> Ids)
+        {
+            return await _table.Where(e => Ids.Contains(e.Id)).ToListAsync();
+        }
         public async Task CreateAsync(TEntity entity)
         {
             await _table.AddAsync(entity);
@@ -38,9 +45,6 @@ namespace Backend.Repositories.BaseRepository
         {
             _table.RemoveRange(entities);
         }
-        public async Task<TEntity?> GetByIdAsync(Guid id)
-        {
-            return await _table.FirstOrDefaultAsync(e => e.Id == id);
-        }
+
     }
 }

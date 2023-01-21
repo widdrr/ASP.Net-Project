@@ -7,7 +7,8 @@ import { LoginComponent } from './pages/auth/login/login.component';
 const routes: Routes = [
   {
     path: 'browse',
-    component: GameComponent
+    component: GameComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',

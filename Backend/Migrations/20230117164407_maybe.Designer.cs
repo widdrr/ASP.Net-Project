@@ -4,6 +4,7 @@ using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(GameStoreContext))]
-    partial class GameStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20230117164407_maybe")]
+    partial class maybe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,7 +58,7 @@ namespace Backend.Migrations
 
                     b.HasIndex("GameId");
 
-                    b.ToTable("GamePurchases");
+                    b.ToTable("GamePurchase");
                 });
 
             modelBuilder.Entity("Backend.Models.Deposit", b =>
@@ -184,13 +187,13 @@ namespace Backend.Migrations
             modelBuilder.Entity("Backend.Models.Associations.Addition", b =>
                 {
                     b.HasOne("Backend.Models.Game", "Game")
-                        .WithMany("GameAdditions")
+                        .WithMany("GameLibraries")
                         .HasForeignKey("GameId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Backend.Models.Library", "Library")
-                        .WithMany("Games")
+                        .WithMany("GameLibraries")
                         .HasForeignKey("LibraryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -265,14 +268,14 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.Game", b =>
                 {
-                    b.Navigation("GameAdditions");
+                    b.Navigation("GameLibraries");
 
                     b.Navigation("GamePurchases");
                 });
 
             modelBuilder.Entity("Backend.Models.Library", b =>
                 {
-                    b.Navigation("Games");
+                    b.Navigation("GameLibraries");
                 });
 
             modelBuilder.Entity("Backend.Models.Purchase", b =>

@@ -7,7 +7,6 @@ using Backend.Repositories.TransactionRepository;
 using Backend.Repositories.UserRepository;
 using AutoMapper;
 using BCryptNet = BCrypt.Net.BCrypt;
-using Backend.Models.DTOs.Games;
 
 namespace Backend.Services.UserService
 {
@@ -39,7 +38,7 @@ namespace Backend.Services.UserService
             return await _userRepository.GetAllAdminWithLibrariesAsync();
         }
         public async Task<User?> CreateAsync(UserRequestDto user)
-        {
+        {   
             var newUser = new User(user);
             await _userRepository.CreateAsync(newUser);
             try
@@ -94,7 +93,7 @@ namespace Backend.Services.UserService
             _userRepository.DeleteRange(await allusers);
             await _unitOfWork.SaveAsync();
         }
-        public async Task<string?> AuthenticateAsync(UserAuthRequestDto user)
+        public async Task<UserAuthResponseDto?> AuthenticateAsync(UserAuthRequestDto user)
         {
             var existingUser = await _userRepository.GetByUsernameAsync(user.Username);
             if (existingUser == null || !BCryptNet.Verify(user.Password, existingUser.PasswordHash))
@@ -102,11 +101,25 @@ namespace Backend.Services.UserService
                 return null;
             }
             var jwtToken = _jwtUtility.GenerateToken(existingUser);
-            return jwtToken;
+            var balance = await GetAccountBalanceAsync(existingUser.Id);
+           
+            var response = new UserAuthResponseDto(existingUser,balance,jwtToken);
+            return response;
         }
-        public Task<int> GetAccountBalance(Guid userId)
+        public async Task<double> GetAccountBalanceAsync(Guid userId)
         {
-            throw new NotImplementedException();
+            var transactions = _transactionRepository.GetTransactionsForUserAsync(userId);
+
+            var groupedSum = (await transactions)
+                             .GroupBy(
+                              t => t.Type,
+                              (type, transactions) => new
+                              {
+                                  Type = type,
+                                  Sum = transactions.Sum(t => t.Sum),
+                              })
+                             .ToDictionary(t => t.Type);
+            return groupedSum["Deposit"].Sum - groupedSum["Purchase"].Sum;
         }
     }
 }

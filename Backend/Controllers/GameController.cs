@@ -3,9 +3,9 @@ using Backend.Models;
 using Backend.Models.DTOs.Games;
 using Backend.Services.GameService;
 using AutoMapper;
-using Lab4_13.Helpers.Attributes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Backend.Helpers.Attributes;
 
 namespace Backend.Controllers
 {

@@ -26,6 +26,10 @@ namespace Backend.Services.GameService
         {
             return await _gameRepository.GetAllAsync();
         }
+        public async Task<IEnumerable<Game>> GetByIdRangeAsync(IEnumerable<Guid> ids)
+        {
+            return await _gameRepository.GetByIdRangeAsync(ids);
+        }
         public async Task<Game?> CreateAsync(GameRequestDto game)
         {
             var newGame = _mapper.Map<Game>(game);

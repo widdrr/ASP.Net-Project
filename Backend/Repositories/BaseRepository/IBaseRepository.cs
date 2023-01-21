@@ -6,6 +6,7 @@ namespace Backend.Repositories.BaseRepository
     {
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task<TEntity?> GetByIdAsync(Guid id);
+        Task<IEnumerable<TEntity>> GetByIdRangeAsync(IEnumerable<Guid> id);
         Task CreateAsync(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);

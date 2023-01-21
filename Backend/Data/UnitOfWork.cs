@@ -4,9 +4,9 @@ using Backend.Repositories.BaseRepository;
 using Backend.Repositories.GameRepository;
 using Backend.Repositories.TransactionRepository;
 using Backend.Repositories.UserRepository;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using System.Data.SqlClient;
 
 namespace Backend.Data
 {

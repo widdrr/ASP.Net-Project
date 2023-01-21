@@ -37,12 +37,27 @@ namespace Backend.Helpers.Seeders
                 Price = 23.95,
                 ReleaseDate = new DateTime(2009, 5, 17)
             };
+            Game Brul = new()
+            {
+                Name = "Brawlhalla",
+                Developer = "Blue Mammoth Games",
+                Price = 0,
+                ReleaseDate = new DateTime(2017, 10, 17)
+            };
+            Game WC3 = new()
+            {
+                Name = "The Witcher 3: Wild Hunt",
+                Developer = "CD PROJEKT RED",
+                Price = 30,
+                ReleaseDate = new DateTime(2015, 5, 18)
+            };
 
             User admin = new()
             {
                 Username = "Gaben",
                 Email = "gaben@notvalvesoftware.com",
                 PasswordHash = BCryptNet.HashPassword("halflife3"),
+                JoinDate = new DateTime(2022, 12, 17),
                 Role = Enums.Role.Admin,
                 Library = null,
                 Transactions = null
@@ -52,15 +67,18 @@ namespace Backend.Helpers.Seeders
                 Username = "widz",
                 Email = "tavaandrei@gmail.com",
                 PasswordHash = BCryptNet.HashPassword("StrongPassword123"),
+                JoinDate = new DateTime(2022, 12, 25),
                 Role = Enums.Role.User
             };
 
-            if (!_context.Games.Any() || !_context.Users.Any())
+            if (!_context.Games.Any() && !_context.Users.Any())
             {
                 //adding games
                 _context.Add(TF2);
                 _context.Add(BoI);
                 _context.Add(MC);
+                _context.Add(Brul);
+                _context.Add(WC3);
 
                 //adding users
                 _context.Add(widz);
@@ -70,7 +88,7 @@ namespace Backend.Helpers.Seeders
                 _context.Add(new Library
                 {
                     User = widz,
-                    GameLibraries = new List<Addition>
+                    Games = new List<Addition>
                     {
                         new Addition
                         {
@@ -97,7 +115,7 @@ namespace Backend.Helpers.Seeders
                     Date = new DateTime(2013, 11, 19),
                     Deposit = new Deposit
                     {
-                        Sum = 100
+                        Sum = 80
                     }
                 });
                 _context.Add(new Transaction

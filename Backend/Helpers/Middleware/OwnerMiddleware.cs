@@ -9,14 +9,12 @@
             _nextRequestDelegate = requestDelegate;
         }
         public async Task Invoke(HttpContext httpContext)
-        {
-            var token = httpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split("").Last();
-
-            var userId = httpContext.Request.RouteValues["user"];
+        { 
+            var userId = (string?)httpContext.Request.RouteValues["userId"];
 
             if (userId != null)
             {
-                httpContext.Items["UserId"] = userId;
+                httpContext.Items["userId"] = new Guid(userId);
             }
             await _nextRequestDelegate(httpContext);
         }

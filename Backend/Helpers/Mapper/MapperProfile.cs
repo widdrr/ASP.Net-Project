@@ -2,6 +2,7 @@
 using Backend.Models.DTOs.Games;
 using Backend.Models.DTOs.Users;
 using AutoMapper;
+using Backend.Enums;
 
 namespace Backend.Helpers.Mapper
 {
@@ -11,9 +12,11 @@ namespace Backend.Helpers.Mapper
         {
             CreateMap<GameRequestDto, Game>()
                 .ForMember(dest => dest.Id,
-                    opts => opts.NullSubstitute(new Guid()));
+                    opts => opts.NullSubstitute(Guid.NewGuid()));
 
             CreateMap<Game, GameResponseDto>();
+
+            CreateMap<User, UserResponseDto>();
         }
     }
 }
