@@ -2,6 +2,7 @@
 using Backend.Repositories;
 using Backend.Repositories.BaseRepository;
 using Backend.Repositories.GameRepository;
+using Backend.Repositories.LibraryRepository;
 using Backend.Repositories.TransactionRepository;
 using Backend.Repositories.UserRepository;
 using Microsoft.Data.SqlClient;
@@ -23,6 +24,7 @@ namespace Backend.Data
         private IGameRepository? _gameRepository;
         private IUserRepository? _userRepository;
         private ITransactionRepository? _transactionRepository;
+        private ILibraryRepository? _libraryRepository;
 
         public UnitOfWork(GameStoreContext context)
         {
@@ -64,6 +66,17 @@ namespace Backend.Data
                     _transactionRepository = new TransactionRepository(_context);
                 }
                 return _transactionRepository;
+            }
+        }
+        public ILibraryRepository LibraryRepository
+        {
+            get
+            {
+                if (_libraryRepository is null)
+                {
+                    _libraryRepository = new LibraryRepository(_context);
+                }
+                return _libraryRepository;
             }
         }
         public async Task CreateTransactionAsync()

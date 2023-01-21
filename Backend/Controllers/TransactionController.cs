@@ -47,7 +47,7 @@ namespace Backend.Controllers
             var res = await _transactionService.MakePurchaseAsync(userId, purchase);
             
             if (res == null)
-                return BadRequest("Insufficient funds");
+                return BadRequest("An error occured");
             
             return Ok(res);
         }
