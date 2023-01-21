@@ -6,6 +6,7 @@ namespace Backend.Services.LibraryService
     {
         Task<Library?> GetByOwnerAsync(Guid userId);
         Task<Library?> CreateAsync(Guid userId);
+        Task<Library?> TransferOwenership(Guid senderId, Guid recipientId);
 
     }
 }

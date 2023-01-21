@@ -95,7 +95,7 @@ namespace Backend.Services.UserService
         }
         public async Task<UserAuthResponseDto?> AuthenticateAsync(UserAuthRequestDto user)
         {
-            var existingUser = await _userRepository.GetByUsernameAsync(user.Username);
+            var existingUser = await _userRepository.GetByUsernameWithLibraryAsync(user.Username);
             if (existingUser == null || !BCryptNet.Verify(user.Password, existingUser.PasswordHash))
             {
                 return null;
@@ -118,8 +118,14 @@ namespace Backend.Services.UserService
                                   Type = type,
                                   Sum = transactions.Sum(t => t.Sum),
                               })
-                             .ToDictionary(t => t.Type);
-            return groupedSum["Deposit"].Sum - groupedSum["Purchase"].Sum;
+                             .ToDictionary(t => t.Type,
+                                           t => t.Sum);
+            double added = 0;
+            double spent = 0;
+
+            groupedSum.TryGetValue("Deposit", out added);
+            groupedSum.TryGetValue("Purchase", out spent);
+            return added - spent;
         }
     }
 }

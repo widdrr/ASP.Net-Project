@@ -31,6 +31,17 @@ namespace Backend.Controllers
             var userDto = _mapper.Map<UserResponseDto>(user);
             return Ok(userDto);
         }
+        [HttpPost]
+        public async Task<IActionResult> Register(UserRequestDto userReq)
+        {
+            var user = await _userService.CreateAsync(userReq);
+
+            if (user == null)
+                return BadRequest();
+
+            var userDto = _mapper.Map<UserResponseDto>(user);
+            return Ok(userDto);
+        }
 
         [HttpPut("{userId}")]
         [OwnerAuthorization]

@@ -2,9 +2,11 @@
 using Backend.Helpers.Authorization;
 using Backend.Helpers.Seeders;
 using Backend.Repositories.GameRepository;
+using Backend.Repositories.LibraryRepository;
 using Backend.Repositories.TransactionRepository;
 using Backend.Repositories.UserRepository;
 using Backend.Services.GameService;
+using Backend.Services.LibraryService;
 using Backend.Services.TransactionService;
 using Backend.Services.UserService;
 
@@ -22,6 +24,7 @@ namespace Backend.Helpers.Extensions
             services.AddScoped<IGameRepository, GameRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddScoped<ILibraryRepository, LibraryRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
@@ -31,6 +34,7 @@ namespace Backend.Helpers.Extensions
             services.AddScoped<IGameService, GameService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITransactionService, TransactionService>();
+            services.AddScoped<ILibraryService, LibraryService>();
 
             return services;
         }
