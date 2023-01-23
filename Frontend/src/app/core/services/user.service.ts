@@ -7,22 +7,23 @@ import { ApiService } from './api.service';
 })
 export class UserService {
 
-  private readonly route = 'user/';
+  private readonly route = 'user';
 
   constructor(private readonly apiService: ApiService) { }
 
   login(loginBody: any) : Observable<any> {
 
-    return this.apiService.post<any>(this.route + 'authenticate', loginBody).pipe(
+    return this.apiService.post<any>(`${this.route}/authenticate`, loginBody).pipe(
       map((response: any) => {
         if (response) {
           localStorage.setItem('token', response.token);
+          localStorage.setItem('userId',response.id)
         }
       })
     );
   }
   register(registerBody: any) : Observable<any> {
-    return this.apiService.post<any>(this.route + 'add', registerBody);
+    return this.apiService.post<any>(`${this.route}/add`, registerBody);
   }
 
   isLoggedIn(): boolean {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { GameService } from '../../core/services/game.service';
+import { LibraryService } from '../../core/services/library.service';
 import { Game } from '../../data/game';
 
 @Component({

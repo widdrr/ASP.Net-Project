@@ -19,7 +19,7 @@
       <td>{{ game.developer }}</td>
       <td>{{ game.price | price}}</td>
       <td>{{ game.releaseDate | date }}</td>
-      <td><button>Add To Cart</button></td>
+      <td><button [appOwnCheck]="game.id"></button></td>
     </tr>
   </tbody>
 </table>
