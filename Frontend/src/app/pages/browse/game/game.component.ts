@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { GameService } from '../../core/services/game.service';
-import { LibraryService } from '../../core/services/library.service';
-import { Game } from '../../data/game';
+import { GameService } from '../../../core/services/game.service';
+import { Game } from '../../../data/game';
 
 @Component({
   selector: 'app-game',
@@ -10,6 +9,7 @@ import { Game } from '../../data/game';
 })
 export class GameComponent {
   public games?: Array<Game>
+  public columnsToDisplay : Array<string> = ["name","dev","price","button"]
 
   constructor(private readonly gameService: GameService) { }
 

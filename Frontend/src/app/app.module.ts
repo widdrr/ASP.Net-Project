@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
-import { GameComponent } from './pages/game/game.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 
 import { PricePipe } from './core/pipes/price.pipe';
@@ -15,17 +14,16 @@ import { PricePipe } from './core/pipes/price.pipe';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 
 import { OwnCheckDirective } from './core/directives/own-check.directive';
+import { BrowseModule } from './pages/browse/browse.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PricePipe,
-    GameComponent,
     NavigationComponent,
-    OwnCheckDirective
   ],
   imports: [
     AuthModule,
+    BrowseModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

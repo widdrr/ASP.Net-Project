@@ -24,6 +24,14 @@ export class LibraryService {
   }
   ownsGame(gameId: string): boolean {
 
+    //here as a last failase in case ownedGames still haven't loaded
+    if (this.ownedGames == null) {
+      setTimeout(()=>300);
+    }
+    //to do: implement a more reliable way to check if user doesn't have a library
+    if (this.ownedGames == null)
+      return false;
+
     return this.ownedGames!.has(gameId);
   }
 }
