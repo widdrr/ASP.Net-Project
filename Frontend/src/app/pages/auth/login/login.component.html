@@ -1,10 +1,17 @@
-<form [formGroup]="loginForm">
-  <label>Username</label>
-  <input formControlName="username"/>
-  <br/>
-  <label>Password</label>
-  <input type="password" formControlName="password"/>
-  <br/>
-</form>
-<br/>
-<button (click)="login()">Login</button>
+<div id="container">
+  <mat-card id="login">
+    <form [formGroup]="loginForm">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+      <br />
+      <button mat-raised-button (click)="login()">Login</button>
+    </form>
+  </mat-card>
+</div>
