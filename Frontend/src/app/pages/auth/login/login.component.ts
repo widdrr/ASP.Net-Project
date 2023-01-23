@@ -21,8 +21,8 @@ export class LoginComponent {
 
   login() {
     this.authService.login(this.loginForm.value).subscribe(data => {
-      console.log(data);
-      this.router.navigate(['/browse']);
+      this.router.navigate(['/browse'])
+        .then(() => window.location.reload());
     })
   }
 }
