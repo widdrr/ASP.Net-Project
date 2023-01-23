@@ -1,21 +1,28 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AuthModule } from './pages/auth/auth.module';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { AppComponent } from './app.component';
-import { PricePipe } from './core/pipes/price.pipe';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameComponent } from './pages/game/game.component';
-import { AppRoutingModule } from './app-routing.module';
 import { NavigationComponent } from './shared/navigation/navigation.component';
-import { AuthModule } from './pages/auth/auth.module';
+
+import { PricePipe } from './core/pipes/price.pipe';
+
+import { TokenInterceptor } from './core/interceptors/token.interceptor';
+
+import { OwnCheckDirective } from './core/directives/own-check.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     PricePipe,
     GameComponent,
-    NavigationComponent
+    NavigationComponent,
+    OwnCheckDirective
   ],
   imports: [
     AuthModule,
@@ -24,7 +31,11 @@ import { AuthModule } from './pages/auth/auth.module';
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

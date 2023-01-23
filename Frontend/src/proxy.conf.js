@@ -1,11 +1,10 @@
 const PROXY_CONFIG = [
   {
     context: [
-      "/api/game",
-      "/api/user"
+      "/api",
     ],
     target: "https://localhost:7132",
-    secure: false
+    secure: false,
   }
 ]
 
