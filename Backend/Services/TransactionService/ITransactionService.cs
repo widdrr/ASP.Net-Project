@@ -6,6 +6,7 @@ namespace Backend.Services.TransactionService
 {
     public interface ITransactionService
     {
+        Task<DetailedTransactionDto?> GetTransactionByIdAsync(Guid transactionId);
         Task<IEnumerable<TransactionDto>> GetTransactionsForUserAsync(Guid userId);
         Task<IEnumerable<TransactionDto>> GetDepositsForUserAsync(Guid userId);
         Task<IEnumerable<TransactionDto>> GetPurchasesForUserAsync(Guid userId);

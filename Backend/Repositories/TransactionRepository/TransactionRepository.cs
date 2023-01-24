@@ -16,7 +16,38 @@ namespace Backend.Repositories.TransactionRepository
             _deposits = _context.Deposits;
             _gamePurchases = _context.GamePurchases;
         }
+        public async Task<DetailedTransactionDto?> GetTransactionDetailsAsync(Guid transactionId)
+        {
+            var deposit = await _deposits.Where(d => d.TransactionId == transactionId)
+                          .Select(d => new DetailedTransactionDto
+                          {
+                              Id = d.Transaction.Id,
+                              UserId = d.Transaction.UserId,
+                              Date = d.Transaction.Date,
+                              Type = "Deposit",
+                              Sum = d.Sum
+                          }).FirstOrDefaultAsync();
 
+            if (deposit != null)
+                return deposit;
+
+            var purchase = await (from t in _table.AsNoTracking()
+                                  where t.Id == transactionId
+                                  join gp in _gamePurchases.Include(gp => gp.Game)
+                                    on t.Id equals gp.TransactionId
+                                    into purchases
+                                  select new DetailedTransactionDto
+                                  {
+                                      Id = t.Id,
+                                      UserId = t.UserId,
+                                      Date = t.Date,
+                                      Type = "Purchase",
+                                      Sum = purchases.Sum(p => p.Price),
+                                      Games = purchases.Select(game => new GamePurchaseDto(game))
+                                  }).FirstOrDefaultAsync();
+
+            return purchase;
+        }
         public async Task<IEnumerable<TransactionDto>> GetTransactionsForUserAsync(Guid userId)
         {
             var deposits = await GetDepositsForUserAsync(userId);
