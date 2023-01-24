@@ -10,11 +10,13 @@ namespace Backend.Repositories.TransactionRepository
     public class TransactionRepository : BaseRepository<Transaction>, ITransactionRepository
     {
         private readonly DbSet<Deposit> _deposits;
+        private readonly DbSet<Purchase> _purchases;
         private readonly DbSet<GamePurchase> _gamePurchases;
         public TransactionRepository(GameStoreContext gameStoreContext) : base(gameStoreContext)
         {
             _deposits = _context.Deposits;
             _gamePurchases = _context.GamePurchases;
+            _purchases = _context.Purchases;
         }
         public async Task<DetailedTransactionDto?> GetTransactionDetailsAsync(Guid transactionId)
         {
@@ -74,16 +76,16 @@ namespace Backend.Repositories.TransactionRepository
 
         public async Task<IEnumerable<TransactionDto>> GetPurchasesForUserAsync(Guid userId)
         {
-            return await (from t in _table.AsNoTracking()
-                          where t.UserId == userId
+            return await (from t in _purchases.AsNoTracking()
+                          where t.Transaction.UserId == userId
                           join gp in _gamePurchases
-                            on t.Id equals gp.TransactionId
+                            on t.Transaction.Id equals gp.TransactionId
                             into purchases
                           select new TransactionDto
                           {
-                              Id = t.Id,
-                              UserId = t.UserId,
-                              Date = t.Date,
+                              Id = t.Transaction.Id,
+                              UserId = t.Transaction.UserId,
+                              Date = t.Transaction.Date,
                               Type = "Purchase",
                               Sum = purchases.Sum(p => p.Price)
                           })

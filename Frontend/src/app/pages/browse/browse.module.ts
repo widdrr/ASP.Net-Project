@@ -5,16 +5,17 @@ import { MatCardModule } from '@angular/material/card'
 import { MatTableModule } from '@angular/material/table'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { GameComponent } from './game/game.component';
-import { PricePipe } from '../../core/pipes/price.pipe';
 import { OwnCheckDirective } from '../../core/directives/own-check.directive';
+import { PipesModule } from '../../core/pipes/pipes.module';
+
 
 @NgModule({
   declarations: [
     GameComponent,
-    PricePipe,
     OwnCheckDirective,
   ],
   imports: [
+    PipesModule,
     CommonModule,
     MatButtonModule,
     MatCardModule,

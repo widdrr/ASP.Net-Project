@@ -1,0 +1,16 @@
+#sum{
+  font-weight: bold
+}
+#history{
+  width: 30%;
+}
+.center{
+  text-align: center;
+}
+tr.mat-mdc-footer-row td {
+  font-weight: bold;
+}
+#total{
+  color: green;
+}
+

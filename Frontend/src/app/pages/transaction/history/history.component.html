@@ -1,0 +1,23 @@
+<mat-toolbar>Transaction History</mat-toolbar>
+
+<mat-card *ngIf="!transactions"><em>Loading... Please wait</em></mat-card>
+
+<div id="history">
+  <table mat-table [dataSource]="transactions" *ngIf="transactions">
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let transaction"> {{transaction.date}}</td>
+      <td mat-footer-cell *matFooterCellDef> Balance </td>
+    </ng-container>
+    <ng-container matColumnDef="sum">
+      <th mat-header-cell *matHeaderCellDef class="center"> Sum </th>
+      <td mat-cell *matCellDef="let transaction" [appColorSum]="transaction.type" id="sum" class="center"> {{transaction.sum | currency}}</td>
+      <td mat-footer-cell *matFooterCellDef id="total" class="center"> {{computeTotal() | currency}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    <tr mat-footer-row *matFooterRowDef="columnsToDisplay"></tr>
+  </table>
+</div>
+
+
