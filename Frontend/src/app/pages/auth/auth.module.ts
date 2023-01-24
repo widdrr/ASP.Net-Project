@@ -5,15 +5,19 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button'
-import { MatCardModule } from '@angular/material/card'
+import { MatCardModule } from '@angular/material/card';
+import { RegisterComponent } from './register/register.component'
+import { AuthRoutingModule } from './auth-routing.module';
 
 
 
 @NgModule({
   declarations: [
-    LoginComponent],
+    LoginComponent,
+    RegisterComponent],
   imports: [
     CommonModule,
+    AuthRoutingModule,
     ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,

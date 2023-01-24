@@ -10,7 +10,7 @@
     <Folder Include="src\app\core\directives\" />
     <Folder Include="src\app\core\interceptors\" />
     <Folder Include="src\app\data\" />
-    <Folder Include="src\app\pages\profile\" />
+    <Folder Include="src\app\pages\transaction\" />
     <Folder Include="src\app\shared\" />
     <Folder Include="src\environments\" />
   </ItemGroup>

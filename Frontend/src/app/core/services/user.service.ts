@@ -23,7 +23,7 @@ export class UserService {
     );
   }
   register(registerBody: any) : Observable<any> {
-    return this.apiService.post<any>(`${this.route}/add`, registerBody);
+    return this.apiService.post<any>(`${this.route}`, registerBody);
   }
 
   isLoggedIn(): boolean {
