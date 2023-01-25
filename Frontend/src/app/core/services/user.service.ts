@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable, tap} from 'rxjs';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class UserService {
   login(loginBody: any) : Observable<any> {
 
     return this.apiService.post<any>(`${this.route}/authenticate`, loginBody).pipe(
-      map((response: any) => {
+      tap((response: any) => {
         if (response) {
           localStorage.setItem('token', response.token);
           localStorage.setItem('userId',response.id)
@@ -23,7 +23,7 @@ export class UserService {
     );
   }
   register(registerBody: any) : Observable<any> {
-    return this.apiService.post<any>(`${this.route}/add`, registerBody);
+    return this.apiService.post<any>(`${this.route}`, registerBody);
   }
 
   isLoggedIn(): boolean {

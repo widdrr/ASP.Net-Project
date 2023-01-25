@@ -1,0 +1,26 @@
+#container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#register {
+  width: 30vw;
+  padding: 3vh;
+}
+
+#register > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#register > form > mat-form-field {
+  width: 75%
+}
+
+#register > form > button {
+  width: 75%;
+}

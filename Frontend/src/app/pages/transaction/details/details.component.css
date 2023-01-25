@@ -1,0 +1,14 @@
+#details {
+  width: 30%;
+}
+#price {
+    font-weight: bold;
+    color: red;
+}
+tr.mat-mdc-footer-row td {
+  font-weight: bold;
+}
+#total {
+  color: red; 
+}
+

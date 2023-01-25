@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Backend.Enums;
 using Backend.Helpers.Attributes;
 using Backend.Models.DTOs;
 using Backend.Models.DTOs.Transactions;
@@ -20,15 +21,25 @@ namespace Backend.Controllers
             _mapper = mapper;
 
         }
+        [HttpGet("{id}")]
+        [RoleAuthorization(Role.User,Role.Admin)]
+        public async Task<IActionResult> GetTransactionAsync(Guid id)
+        {
+            var res = await _transactionService.GetTransactionByIdAsync(id);
+            if (res == null){
+                return NotFound();
+            }
+            return Ok(res);
+        }
 
-        [HttpGet("{userId}")]
+        [HttpGet("history/{userId}")]
         [OwnerAuthorization]
         public async Task<IActionResult> GetTransactionHistoryAsync(Guid userId)
         {
             var res = await _transactionService.GetTransactionsForUserAsync(userId);
             return Ok(res);
         }
-        [HttpPost("{userId}/deposit")]
+        [HttpPost("deposit/{userId}")]
         [OwnerAuthorization]
         public async Task<IActionResult> MakeDepositAsync(Guid userId,double depositSum)
         {
@@ -40,7 +51,7 @@ namespace Backend.Controllers
 
             return Ok(res);
         }
-        [HttpPost("{userId}/purchase")]
+        [HttpPost("purchase/{userId}")]
         [OwnerAuthorization]
         public async Task<IActionResult> MakePurchaseAsync(Guid userId, PurchaseRequestDto purchase)
         {

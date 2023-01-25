@@ -9,7 +9,7 @@ import { Game } from '../../../data/game';
 })
 export class GameComponent {
   public games?: Array<Game>
-  public columnsToDisplay : Array<string> = ["name","dev","price","button"]
+  public columnsToDisplay : Array<string> = ["name","dev","date","price","button"]
 
   constructor(private readonly gameService: GameService) { }
 

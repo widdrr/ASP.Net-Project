@@ -32,6 +32,11 @@ namespace Backend.Services.TransactionService
             _libraryService = libraryService;
         }
 
+
+        public async Task<DetailedTransactionDto?> GetTransactionByIdAsync(Guid transactionId)
+        {
+            return await _transactionRepository.GetTransactionDetailsAsync(transactionId);
+        }
         public async Task<IEnumerable<TransactionDto>> GetTransactionsForUserAsync(Guid userId)
         {
             return await _transactionRepository.GetTransactionsForUserAsync(userId);
@@ -102,5 +107,6 @@ namespace Backend.Services.TransactionService
 
             return await CreateTransactionAsync(newTransaction);
         }
+
     }
 }

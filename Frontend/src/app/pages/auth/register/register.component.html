@@ -1,0 +1,22 @@
+<div id="container">
+  <mat-card id="register">
+    <form [formGroup]="registerForm">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+      <br />
+      <button mat-raised-button (click)="register()">Register</button>
+    </form>
+  </mat-card>
+</div>
