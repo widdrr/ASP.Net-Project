@@ -98,7 +98,7 @@ namespace Backend.Helpers.Seeders
                         new Addition
                         {
                             Game = BoI,
-                            DateAdded = new DateTime(2022,8,26)
+                            DateAdded = new DateTime(2015, 6, 15) //yes, this is before the release date, whatever
                         },
                         new Addition
                         {
@@ -130,6 +130,11 @@ namespace Backend.Helpers.Seeders
                             {
                                 Game = MC,
                                 Price = 16.99
+                            },
+                            new GamePurchase
+                            {
+                                Game = BoI,
+                                Price = 50.56
                             }
                         }
                     }
@@ -146,22 +151,6 @@ namespace Backend.Helpers.Seeders
                             {
                                 Game = TF2,
                                 Price = 0
-                            }
-                        }
-                    }
-                });
-                _context.Add(new Transaction
-                {
-                    User = widz,
-                    Date = new DateTime(2022, 8, 26),
-                    Purchase = new Purchase
-                    {
-                        GamePurchases = new List<GamePurchase>
-                        {
-                            new GamePurchase
-                            {
-                                Game = BoI,
-                                Price = 50.56
                             }
                         }
                     }

@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card'
 import { MatTableModule } from '@angular/material/table'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatDividerModule } from '@angular/material/divider'
+import { MatExpansionModule } from '@angular/material/expansion'
 import { TransactionRoutingModule } from './transaction-routing.module';
 import { PipesModule } from '../../core/pipes/pipes.module';
 import { ColorSumDirective } from '../../core/directives/color-sum.directive';
@@ -28,6 +29,7 @@ import { ColorSumDirective } from '../../core/directives/color-sum.directive';
     MatTableModule,
     MatToolbarModule,
     MatDividerModule,
+    MatExpansionModule
   ]
 })
 export class TransactionModule { }

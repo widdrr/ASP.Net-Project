@@ -16,7 +16,8 @@ const routes: Routes = [
   },
   {
     path: 'transaction',
-    loadChildren: () => import('./pages/transaction/transaction.module').then(m => m.TransactionModule)
+    loadChildren: () => import('./pages/transaction/transaction.module').then(m => m.TransactionModule),
+    canActivate: [AuthGuard]
   }];
 
 @NgModule({

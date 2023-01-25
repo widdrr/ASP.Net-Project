@@ -3,24 +3,28 @@
 <mat-card *ngIf="!games"><em>Loading... Please wait</em></mat-card>
 
 <table mat-table [dataSource]="games" *ngIf="games">
-  <ng-container matColumnDef="name">
+  <tr matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Title </th>
     <td mat-cell *matCellDef="let game"> {{game.name}}</td>
-  </ng-container>
-  <ng-container matColumnDef="dev">
+  </tr>
+  <tr matColumnDef="dev">
     <th mat-header-cell *matHeaderCellDef> Developer </th>
     <td mat-cell *matCellDef="let game"> {{game.developer}}</td>
-  </ng-container>
-  <ng-container matColumnDef="price">
+  </tr>
+  <tr matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Release Date </th>
+    <td mat-cell *matCellDef="let game"> {{game.releaseDate | date}}</td>
+  </tr>
+  <tr matColumnDef="price">
     <th mat-header-cell *matHeaderCellDef> Price </th>
     <td mat-cell *matCellDef="let game"> {{game.price | price}}</td>
-  </ng-container>
-  <ng-container matColumnDef="button">
+  </tr>
+  <tr matColumnDef="button">
     <th mat-header-cell *matHeaderCellDef> Action </th>
     <td mat-cell *matCellDef="let game">
-    <button mat-raised-button [appOwnCheck]="game.id"></button>
-      </td>
-  </ng-container>
+      <button mat-raised-button [appOwnCheck]="game.id"></button>
+    </td>
+  </tr>
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
   <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
 </table>

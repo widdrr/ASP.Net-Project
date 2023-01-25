@@ -11,7 +11,7 @@ import { Transaction } from '../../../data/transaction';
 export class HistoryComponent implements OnInit {
 
   public transactions?: Array<Transaction>
-  public columnsToDisplay: Array<string> = ["date", "sum"]
+  public columnsToDisplay: Array<string> = ["date", "sum", "details"]
   
   constructor(private readonly transactionService: TransactionService) {}
 

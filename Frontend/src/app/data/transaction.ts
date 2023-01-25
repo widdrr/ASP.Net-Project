@@ -6,5 +6,5 @@ export interface Transaction {
   type: string,
   sum: number,
   //for detailed responses
-  games? : Array<GamePurchase>
+  games : Array<GamePurchase>
 }
