@@ -108,18 +108,7 @@ namespace Backend.Services.UserService
         }
         public async Task<double> GetAccountBalanceAsync(Guid userId)
         {
-            var transactions = _transactionRepository.GetTransactionsForUserAsync(userId);
-
-            var groupedSum = (await transactions)
-                             .GroupBy(
-                              t => t.Type,
-                              (type, transactions) => new
-                              {
-                                  Type = type,
-                                  Sum = transactions.Sum(t => t.Sum),
-                              })
-                             .ToDictionary(t => t.Type,
-                                           t => t.Sum);
+            var groupedSum = await _transactionRepository.GetGroupedSums(userId);
             double added = 0;
             double spent = 0;
 

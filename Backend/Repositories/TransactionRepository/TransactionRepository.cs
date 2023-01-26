@@ -18,6 +18,7 @@ namespace Backend.Repositories.TransactionRepository
             _gamePurchases = _context.GamePurchases;
             _purchases = _context.Purchases;
         }
+
         public async Task<DetailedTransactionDto?> GetTransactionDetailsAsync(Guid transactionId)
         {
             var deposit = await _deposits.Where(d => d.TransactionId == transactionId)
@@ -92,5 +93,21 @@ namespace Backend.Repositories.TransactionRepository
                           .ToListAsync();      
         }
 
+        public async Task<IDictionary<string,double>> GetGroupedSums(Guid userId)
+        {
+            var transactions = GetTransactionsForUserAsync(userId);
+
+            var groupedSum = (await transactions)
+                             .GroupBy(
+                              t => t.Type,
+                              (type, transactions) => new
+                              {
+                                  Type = type,
+                                  Sum = transactions.Sum(t => t.Sum),
+                              })
+                             .ToDictionary(t => t.Type,
+                                           t => t.Sum);
+            return groupedSum;
+        }
     }
 }
