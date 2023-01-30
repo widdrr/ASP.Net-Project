@@ -16,7 +16,7 @@
     </tr>
     <tr matColumnDef="details">
       <th mat-header-cell *matHeaderCellDef> Details </th>
-      <td mat-cell *matCellDef="let transaction"><div *ngIf="transaction.type=='Purchase'" [routerLink]="['/transaction/details',transaction.id]">iconhere</div></td>
+      <td mat-cell *matCellDef="let transaction"><div *ngIf="transaction.type=='Purchase'" [routerLink]="['../details',transaction.id]">iconhere</div></td>
       <td mat-footer-cell *matFooterCellDef></td>
     </tr>
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>

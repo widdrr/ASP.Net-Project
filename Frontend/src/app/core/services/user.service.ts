@@ -33,5 +33,6 @@ export class UserService {
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
   }
 } 

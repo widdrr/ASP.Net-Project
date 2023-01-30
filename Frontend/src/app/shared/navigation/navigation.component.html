@@ -1,1 +1,10 @@
-
+<mat-sidenav-container class="container">
+  <mat-sidenav id="nav" mode="side" [fixedInViewport]="true" opened>
+    <a mat-raised-button *ngIf="!isLogged()" [routerLink]="['/auth/login']">Login</a>
+    <a mat-raised-button *ngIf="isLogged()" [routerLink]="['/browse']">Browse</a>
+    <a mat-raised-button *ngIf="isLogged()" [routerLink]="['/transaction/history']">Transactions</a>
+    <a mat-raised-button *ngIf="isLogged()" [routerLink]="['/transaction/cart']">Cart</a>
+    <button mat-raised-button *ngIf="isLogged()" (click) ="logout()">Logout</button>
+  </mat-sidenav>
+  <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
+</mat-sidenav-container>
