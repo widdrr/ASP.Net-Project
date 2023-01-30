@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HistoryComponent } from './history/history.component';
 import { DetailsComponent } from './details/details.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
     path: "details/:trId",
     component: DetailsComponent
   },
+  {
+    path: "cart",
+    component: CartComponent
+  }
 ]
 
 

@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { GameComponent } from './game/game.component';
 import { OwnCheckDirective } from '../../core/directives/own-check.directive';
 import { PipesModule } from '../../core/pipes/pipes.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { PipesModule } from '../../core/pipes/pipes.module';
     MatCardModule,
     MatTableModule,
     MatToolbarModule,
+    RouterModule,
   ]
 })
 export class BrowseModule { }

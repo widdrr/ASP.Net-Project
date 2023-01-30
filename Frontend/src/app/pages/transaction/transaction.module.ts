@@ -11,6 +11,7 @@ import { MatExpansionModule } from '@angular/material/expansion'
 import { TransactionRoutingModule } from './transaction-routing.module';
 import { PipesModule } from '../../core/pipes/pipes.module';
 import { ColorSumDirective } from '../../core/directives/color-sum.directive';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -19,6 +20,7 @@ import { ColorSumDirective } from '../../core/directives/color-sum.directive';
     HistoryComponent,
     DetailsComponent,
     ColorSumDirective,
+    CartComponent,
   ],
   imports: [
     CommonModule,

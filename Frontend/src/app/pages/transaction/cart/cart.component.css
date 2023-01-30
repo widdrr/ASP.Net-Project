@@ -1,0 +1,16 @@
+#cart {
+  width: 30%;
+}
+
+#price {
+  font-weight: bold;
+  color: red;
+}
+
+#total {
+  color: red;
+}
+
+tr.mat-mdc-footer-row td {
+  font-weight: bold;
+}

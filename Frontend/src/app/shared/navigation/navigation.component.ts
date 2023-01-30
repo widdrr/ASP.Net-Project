@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../../core/services/user.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class NavigationComponent {
 
+  constructor(private readonly userService: UserService) { }
+
+  isLogged(): boolean {
+    return this.userService.isLoggedIn();
+  }
+  logout(): void {
+    this.userService.logout();
+    window.location.reload();
+  }
 }

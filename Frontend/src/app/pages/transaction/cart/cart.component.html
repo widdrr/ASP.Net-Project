@@ -1,0 +1,29 @@
+<div id="cart">
+  <mat-toolbar *ngIf="games">Cart Contents</mat-toolbar>
+  <table mat-table [dataSource]="games" *ngIf="games">
+    <tr matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let game"> {{game.name}}</td>
+      <td mat-footer-cell *matFooterCellDef> Total </td>
+    </tr>
+    <tr matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let game" id="price"> {{game.price | price}}</td>
+      <td mat-footer-cell *matFooterCellDef id="total"> {{ computeTotal() | currency }} </td>
+    </tr>
+    <tr matColumnDef="button">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let game">
+        <button mat-raised-button (click)="removeFromCart(game.id)">
+          Remove From Cart
+        </button>
+      </td>
+      <td mat-footer-cell *matFooterCellDef>
+        <button mat-raised-button (click)="makePurchase()" [disabled]="games.length == 0">Buy</button>
+      </td>
+    </tr>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    <tr mat-footer-row *matFooterRowDef="columnsToDisplay"></tr>
+  </table>
+</div>

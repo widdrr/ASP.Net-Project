@@ -8,5 +8,7 @@ import { LibraryService } from './core/services/library.service';
 })
 export class AppComponent {
   title = 'Frontend';
-  constructor(private readonly libraryService: LibraryService) { }
+  constructor(private readonly libraryService: LibraryService) {
+    console.log("App Created");
+  }
 }
