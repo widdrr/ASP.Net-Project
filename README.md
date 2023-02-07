@@ -9,7 +9,7 @@
 - [x] All table relationships
 - [x] LINQ methods (Where, Join, GroupBy and Include)
 - [x] Role-based Authorization (+some sort of Owner-Based Authorization)
-- [x] Reppository and Service structure
+- [x] Repository and Service structure
 - BONUS:
   - [x] Unit of Work pattern
 - ### Frontend
